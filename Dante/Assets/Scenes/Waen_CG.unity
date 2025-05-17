@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3339,6 +3339,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9ff60d85aed5f504eb3c2fc0bfe89713,
+        type: 3}
+      propertyPath: m_TagString
+      value: Objetivo
+      objectReference: {fileID: 0}
     - target: {fileID: 2617470207732253914, guid: 9ff60d85aed5f504eb3c2fc0bfe89713,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5406,14 +5411,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766598603}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.97, y: 8.33, z: 46.41}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 2.695, y: 8.683, z: 39.569}
   m_LocalScale: {x: 1.1001, y: 2.523761, z: 0.052046}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1605855826}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1001 &766638702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7069,14 +7074,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999781828}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.97900057, y: 8.3359995, z: 44.22}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.606, y: 8.771, z: 39.568}
   m_LocalScale: {x: 1.1001, y: 2.523761, z: 0.052046}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1685446503}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!1001 &1023670793
 PrefabInstance:
   m_ObjectHideFlags: 0
