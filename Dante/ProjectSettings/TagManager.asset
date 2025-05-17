@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - TriggerDoor
+  - Objetivo
   layers:
   - Default
   - TransparentFX
