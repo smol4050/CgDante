@@ -7,6 +7,8 @@ TagManager:
   - Door
   - TriggerDoor
   - Objetivo
+  - Puerta
+  - Linterna
   layers:
   - Default
   - TransparentFX
