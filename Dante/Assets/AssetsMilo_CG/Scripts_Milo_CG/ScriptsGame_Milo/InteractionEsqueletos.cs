@@ -15,8 +15,8 @@ public class InteractionEsqueletos : MonoBehaviour, IInteractuable
     void Start()
     {
         enemigoControllerPuertas = FindObjectOfType<EnemyController_Paraiso>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        SuCollider = GetComponent<Collider>();
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        SuCollider = GetComponentInChildren<Collider>();
         audioSource = GetComponent<AudioSource>();
 
         // Oculta solo visualmente el esqueleto
