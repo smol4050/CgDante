@@ -33,8 +33,8 @@ public class InteractionRadio : MonoBehaviour, IInteractuable
 
             // Audio 3D
             fuente.spatialBlend = 1f;
-            fuente.minDistance = 1f;
-            fuente.maxDistance = 15f;
+            fuente.minDistance = 3f;
+            fuente.maxDistance = 50f;
             fuente.rolloffMode = AudioRolloffMode.Linear;
 
             fuente.Play();
@@ -45,8 +45,8 @@ public class InteractionRadio : MonoBehaviour, IInteractuable
 
         fxSource = gameObject.AddComponent<AudioSource>();
         fxSource.spatialBlend = 1f;
-        fxSource.minDistance = 1f;
-        fxSource.maxDistance = 15f;
+        fxSource.minDistance = 3f;
+        fxSource.maxDistance = 50f;
         fxSource.rolloffMode = AudioRolloffMode.Linear;
     }
 
