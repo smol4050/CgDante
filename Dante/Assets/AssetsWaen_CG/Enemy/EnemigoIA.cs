@@ -38,6 +38,9 @@ public class EnemigoIA : MonoBehaviour
             {
                 agente.isStopped = true;
                 animador.SetBool("Atacando", true);
+
+                
+                jugador.GetComponent<PlayerHealth>()?.RecibirGolpe();
             }
             else
             {
