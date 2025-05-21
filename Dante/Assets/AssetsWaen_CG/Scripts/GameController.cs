@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
     public static GameController Instance;
 
     public int totalCorazones;
-    public int corazonesRecolectados;
+    public int corazonesRecolectados = 0;
     public bool misionCompletada = false;
 
     public TextMeshProUGUI textoMision;
@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     public GameObject panelCorazonesRestantes;
     public CanvasGroup panelCanvasGroup;
     public PuertaController puerta;
+
+    public List<NewBehaviourScript> puertasBloqueadas;
 
 
 
@@ -108,6 +110,14 @@ public class GameController : MonoBehaviour
         corazonesRecolectados++;
 
         ActualizarUI();
+
+        if (corazonesRecolectados == 3)
+        {
+            foreach (var puerta in puertasBloqueadas)
+            {
+                puerta.DesbloquearBoton(); // Este método debe estar en tu script NewBehaviourScript
+            }
+        }
 
         if (corazonesRecolectados >= totalCorazones)
         {

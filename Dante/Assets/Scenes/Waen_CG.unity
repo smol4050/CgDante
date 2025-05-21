@@ -4438,6 +4438,9 @@ MonoBehaviour:
   panelCorazonesRestantes: {fileID: 1519747472}
   panelCanvasGroup: {fileID: 1519747476}
   puerta: {fileID: 222904844}
+  puertasBloqueadas:
+  - {fileID: 1070900164}
+  - {fileID: 1741289182}
   sonidoCorazon: {fileID: 8300000, guid: d6688c6ea04dad54cb587d7316467731, type: 3}
 --- !u!4 &525919595
 Transform:
@@ -9709,12 +9712,14 @@ MonoBehaviour:
   closedPositionTransform: {fileID: 303532345}
   openPositionTransformB: {fileID: 1142102890}
   closedPositionTransformB: {fileID: 1699144830}
+  botonDesbloqueado: 0
   doorState: 1
   buttonState: 0
   doorSpeed: 2
   audioSource: {fileID: 1070900166}
   audioOpen: {fileID: 8300000, guid: 735847c3cabafdc459fbbaad45b23711, type: 3}
   audioClose: {fileID: 8300000, guid: a66375f66e88b664fb43ba9b680b441d, type: 3}
+  audioBloqueado: {fileID: 8300000, guid: 88a4e2cab4e06fb43997f2f92494092a, type: 3}
 --- !u!4 &1070900165
 Transform:
   m_ObjectHideFlags: 0
@@ -9749,7 +9754,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -14326,12 +14331,14 @@ MonoBehaviour:
   closedPositionTransform: {fileID: 238230108}
   openPositionTransformB: {fileID: 423721308}
   closedPositionTransformB: {fileID: 941732894}
+  botonDesbloqueado: 0
   doorState: 1
   buttonState: 0
   doorSpeed: 5
   audioSource: {fileID: 1560424868}
   audioOpen: {fileID: 8300000, guid: 735847c3cabafdc459fbbaad45b23711, type: 3}
   audioClose: {fileID: 8300000, guid: a66375f66e88b664fb43ba9b680b441d, type: 3}
+  audioBloqueado: {fileID: 0}
 --- !u!82 &1560424868
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16137,7 +16144,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -16241,12 +16248,14 @@ MonoBehaviour:
   closedPositionTransform: {fileID: 385104493}
   openPositionTransformB: {fileID: 954369132}
   closedPositionTransformB: {fileID: 213143963}
+  botonDesbloqueado: 0
   doorState: 1
   buttonState: 0
   doorSpeed: 2
   audioSource: {fileID: 1741289181}
   audioOpen: {fileID: 8300000, guid: 735847c3cabafdc459fbbaad45b23711, type: 3}
   audioClose: {fileID: 8300000, guid: a66375f66e88b664fb43ba9b680b441d, type: 3}
+  audioBloqueado: {fileID: 8300000, guid: 88a4e2cab4e06fb43997f2f92494092a, type: 3}
 --- !u!4 &1741289183
 Transform:
   m_ObjectHideFlags: 0
@@ -18845,7 +18854,7 @@ Transform:
   m_GameObject: {fileID: 2102507103}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 2.5194867, y: -0.5167169, z: 0.02}
+  m_LocalPosition: {x: 2.5194867, y: 0.02, z: 0.02}
   m_LocalScale: {x: 11.74359, y: 11.74359, z: 11.74359}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18863,7 +18872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 74.874
+  m_Intensity: 97.738014
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -18985,7 +18994,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 22.31247
+  m_Intensity: 29.125952
   m_Range: 10
   m_SpotAngle: 124.46
   m_InnerSpotAngle: 1
