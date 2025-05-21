@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2205.8518, g: 996.923, b: 306.43436, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3737,6 +3737,11 @@ PrefabInstance:
       propertyPath: _jumpHeight
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: _speedLerpFactor
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1026807804927412581, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: textPressE
@@ -6163,12 +6168,12 @@ GameObject:
   - component: {fileID: 958871278}
   - component: {fileID: 958871277}
   m_Layer: 0
-  m_Name: Global Volume
+  m_Name: -------Global Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &958871277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8671,12 +8676,12 @@ MonoBehaviour:
   largeBand0FadeToggle: 1
   largeBand0FadeStart: 1500
   largeBand0FadeDistance: 3000
-  largeBand1Multiplier: 0.405
+  largeBand1Multiplier: 0.66
   largeBand1FadeToggle: 1
   largeBand1FadeStart: 300
   largeBand1FadeDistance: 800
   ripples: 1
-  ripplesWindSpeed: 8
+  ripplesWindSpeed: 10.9
   ripplesWindOrientationMode: 0
   ripplesWindOrientationValue: 0
   ripplesCurrentMode: 0
@@ -10605,7 +10610,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 8.92
+      value: 10.38
       mode: 0
       spread: 0
       speed:
@@ -14619,7 +14624,7 @@ Transform:
   m_GameObject: {fileID: 1728956863}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 65.05, y: -2.7, z: -28.05}
+  m_LocalPosition: {x: 65.74, y: -2.7, z: -31.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16986,17 +16991,17 @@ PrefabInstance:
     - target: {fileID: 4994075762585400675, guid: cb2b2c1e68123f047bba949073f8c95a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.6
+      value: 5.9
       objectReference: {fileID: 0}
     - target: {fileID: 4994075762585400675, guid: cb2b2c1e68123f047bba949073f8c95a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.96
+      value: -5.821
       objectReference: {fileID: 0}
     - target: {fileID: 4994075762585400675, guid: cb2b2c1e68123f047bba949073f8c95a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.4
+      value: -6.49
       objectReference: {fileID: 0}
     - target: {fileID: 4994075762585400675, guid: cb2b2c1e68123f047bba949073f8c95a,
         type: 3}
