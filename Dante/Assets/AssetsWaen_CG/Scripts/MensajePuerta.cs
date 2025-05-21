@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MensajePuerta : MonoBehaviour
 {
-    public float distancia = 1.5f;
+    public float distancia = 4f;
     private LayerMask mask;
     [SerializeField] private Camera cam;
 

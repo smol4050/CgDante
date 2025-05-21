@@ -16,6 +16,8 @@ public class NewBehaviourScript : MonoBehaviour
     public Transform openPositionTransformB;
     public Transform closedPositionTransformB;
 
+    public bool botonDesbloqueado = false;
+
     public bool doorState = false;
     public bool buttonState = false;
 
@@ -25,7 +27,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     public AudioSource audioSource;        // El componente de audio
     public AudioClip audioOpen;             // Sonido para abrir puerta
-    public AudioClip audioClose;           // Sonido para cerrar puerta
+    public AudioClip audioClose;
+    public AudioClip audioBloqueado;// Sonido para cerrar puerta
 
     // Start is called before the first frame update
     void Start()
@@ -154,16 +157,28 @@ public class NewBehaviourScript : MonoBehaviour
     public void ActivarObjeto()
     {
         // Alterna el estado (abre o cierra la puerta)
-        if (currentCorutine != null)
+        if (!botonDesbloqueado)
         {
-            StopCoroutine(currentCorutine);
+            //  Reproducir sonido de puerta bloqueada
+            if (audioSource != null && audioBloqueado != null)
+            {
+                audioSource.PlayOneShot(audioBloqueado);
+            }
+            return; // No permite abrir/cerrar la puerta si está bloqueada
         }
+            if (currentCorutine != null)
+            {
+                StopCoroutine(currentCorutine);
+            }
 
-        currentCorutine = StartCoroutine(ChanceDoorState(!doorState));
-        doorState = !doorState;
+            currentCorutine = StartCoroutine(ChanceDoorState(!doorState));
+            doorState = !doorState;
+        
     }
 
-
-
+    public void DesbloquearBoton()
+    {
+        botonDesbloqueado = true;
+    }
 
 }
