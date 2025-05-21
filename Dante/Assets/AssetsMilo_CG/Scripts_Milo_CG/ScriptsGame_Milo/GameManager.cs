@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int objetosRecolectados = 0;
-    public int totalObjetos = 4;
+    public int totalObjetos = 10;
 
     private void Awake()
     {

@@ -21,7 +21,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 
     private GameManager gm;
     public int objetosRecolectadosEscena = 0;
-    public int objetosNecesariosEscena = 4;
+    public int objetosNecesariosEscena = 10;
     public TextMeshProUGUI textoPuntaje;
 
     public int puertasAbiertas= 0;
@@ -98,8 +98,9 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 
     public void ObjetoRecolectado()
     {
-        if (objetosRecolectadosEscena < objetosNecesariosEscena) if (gm != null)
-        {
+        if (objetosRecolectadosEscena < objetosNecesariosEscena)
+            if (gm != null)
+            {
             objetosRecolectadosEscena++;
             textoPuntaje.text = objetosRecolectadosEscena.ToString();
             gm.SumarObjeto();
