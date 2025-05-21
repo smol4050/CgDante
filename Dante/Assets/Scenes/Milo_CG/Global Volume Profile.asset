@@ -607,10 +607,10 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.18896773, g: 0.3433962, b: 0, a: 1}
+    m_Value: {r: 0.2819897, g: 0.5169811, b: 0, a: 1}
   maxFogDistance:
     m_OverrideState: 1
-    m_Value: 99.95
+    m_Value: 94.6
   mipFogMaxMip:
     m_OverrideState: 0
     m_Value: 0.5
@@ -622,13 +622,13 @@ MonoBehaviour:
     m_Value: 1000
   baseHeight:
     m_OverrideState: 1
-    m_Value: -35.5
+    m_Value: -24.7
   maximumHeight:
     m_OverrideState: 1
-    m_Value: 100.7
+    m_Value: 58.3
   meanFreePath:
     m_OverrideState: 1
-    m_Value: 7.71
+    m_Value: 10.27
   enableVolumetricFog:
     m_OverrideState: 1
     m_Value: 1
@@ -640,7 +640,7 @@ MonoBehaviour:
     m_Value: 1
   depthExtent:
     m_OverrideState: 1
-    m_Value: 64
+    m_Value: 362.6
   denoisingMode:
     m_OverrideState: 1
     m_Value: 2
