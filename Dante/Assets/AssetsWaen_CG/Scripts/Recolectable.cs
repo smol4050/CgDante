@@ -54,7 +54,7 @@ public class Recolectable : MonoBehaviour, IInteractuable
             yield return null;
         }
 
-        RecolectorCorazones.Instance.ContarCorazon();
+        GameController.Instance.RecolectarCorazon();
         Destroy(gameObject);
     }
 }
