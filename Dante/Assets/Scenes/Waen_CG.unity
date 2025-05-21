@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.13462523, g: 0.11139244, b: 0.07547999, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13234,8 +13234,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: Luego de que masacraras a tantas personas en vida es momento de redimirte,
-    es ahora cuando desmuestras que dentro de ti aguarda algo de bondad, libera las
-    almas que alguna vez en vida hiciste sufrir.
+    es ahora cuando desmuestras que dentro de ti aguarda algo de bondad.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d6ffe435c283fe4b87e4c12e4c53ac7, type: 2}
   m_sharedMaterial: {fileID: 5374843572216277806, guid: 4d6ffe435c283fe4b87e4c12e4c53ac7,
@@ -17145,7 +17144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1519747473
 RectTransform:
   m_ObjectHideFlags: 0
