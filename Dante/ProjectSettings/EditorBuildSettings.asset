@@ -12,6 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_CG.unity
     guid: e1828a31c10bb5c4bbf50e07fe0814db
   - enabled: 1
+    path: Assets/Scenes/Waen_CG.unity
+    guid: 8ba01667b053efc4cbd803c0a57a3e68
+  - enabled: 1
+    path: Assets/Scenes/Frame_CG.unity
+    guid: 3878dee991da930438f476cef537c0c0
+  - enabled: 1
     path: Assets/Scenes/Milo_CG.unity
     guid: 0d2c16b10f538ee45844c666b8e3176b
+  - enabled: 1
+    path: Assets/Scenes/Smol_CG.unity
+    guid: 2cc0131fff125ba4183211f5ad4de561
+  - enabled: 1
+    path: Assets/Scenes/Creditos_CG.unity
+    guid: 2f6690f873d7e8d429f376ffaae739d1
   m_configObjects: {}
