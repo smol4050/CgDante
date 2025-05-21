@@ -16,6 +16,11 @@ public class EnemigoIA : MonoBehaviour
     private int puntoActual = 0;
     private float tiempoParaNuevoDestino = 5f;
 
+    private float tiempoEntreGolpes = 2f; // Tiempo mínimo entre golpes
+    private float tiempoUltimoGolpe = 0f;   // Última vez que golpeó
+
+    public float delayParaGolpe = 0.5f; // Delay entre animación y golpe real
+
     void Start()
     {
         agente = GetComponent<NavMeshAgent>();
@@ -39,8 +44,12 @@ public class EnemigoIA : MonoBehaviour
                 agente.isStopped = true;
                 animador.SetBool("Atacando", true);
 
-                
-                jugador.GetComponent<PlayerHealth>()?.RecibirGolpe();
+                if (Time.time - tiempoUltimoGolpe >= tiempoEntreGolpes)
+                {
+                    // Aquí lanzamos el golpe con delay
+                    StartCoroutine(GolpeConDelay(delayParaGolpe));
+                    tiempoUltimoGolpe = Time.time; // marcamos el tiempo del último golpe
+                }
             }
             else
             {
@@ -88,4 +97,15 @@ public class EnemigoIA : MonoBehaviour
         // Actualiza el índice del punto actual para patrullar en el siguiente
         puntoActual = (puntoActual + 1) % puntosPatrullaje.Count;
     }
+
+    private IEnumerator GolpeConDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (Vector3.Distance(transform.position, jugador.position) <= rangoAtaque)
+        {
+            jugador.GetComponent<PlayerHealth>()?.RecibirGolpe();
+        }
+    }
+
 }

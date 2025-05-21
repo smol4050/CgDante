@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
         hitsReceived++;
         tiempoUltimoGolpe = Time.time;
 
-        currentAlpha += damageOpacityIncrease;
+        currentAlpha = (float)hitsReceived / maxHits;
         currentAlpha = Mathf.Clamp01(currentAlpha);
         SetPanelAlpha(currentAlpha);
 

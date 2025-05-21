@@ -7880,6 +7880,11 @@ PrefabInstance:
       objectReference: {fileID: 1657117181}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
+      propertyPath: delayParaGolpe
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
       propertyPath: puntosPatrullaje.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -12235,6 +12240,11 @@ PrefabInstance:
       objectReference: {fileID: 1657117181}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
+      propertyPath: delayParaGolpe
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
       propertyPath: puntosPatrullaje.Array.size
       value: 5
       objectReference: {fileID: 0}
@@ -12626,6 +12636,11 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1657117181}
+    - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: delayParaGolpe
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
       propertyPath: puntosPatrullaje.Array.size
@@ -15101,8 +15116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePanel: {fileID: 215804901}
-  fadeSpeed: 2
-  damageOpacityIncrease: 0.2
+  fadeSpeed: 0.1
+  damageOpacityIncrease: 1
   maxHits: 5
 --- !u!1 &1657225992
 GameObject:
@@ -15262,6 +15277,11 @@ PrefabInstance:
       propertyPath: jugador
       value: 
       objectReference: {fileID: 1657117181}
+    - target: {fileID: 5494964827881875651, guid: 9017519f344286c4ab54362cfc4d4f71,
+        type: 3}
+      propertyPath: delayParaGolpe
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5494964827881875651, guid: 9017519f344286c4ab54362cfc4d4f71,
         type: 3}
       propertyPath: puntosPatrullaje.Array.size
