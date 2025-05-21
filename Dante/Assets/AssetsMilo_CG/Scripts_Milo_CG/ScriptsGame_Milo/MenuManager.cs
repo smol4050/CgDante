@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public string nombreEscenaDestino;
+    public AudioClip sonidoBoton;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -32,5 +33,10 @@ public class MenuManager : MonoBehaviour
         {
             Debug.LogWarning("No se ha asignado el nombre de la escena a cargar.");
         }
+    }
+
+    public void ButtonSonido()
+    {
+        AudioSource.PlayClipAtPoint(sonidoBoton, Camera.main.transform.position, 50f);
     }
 }
