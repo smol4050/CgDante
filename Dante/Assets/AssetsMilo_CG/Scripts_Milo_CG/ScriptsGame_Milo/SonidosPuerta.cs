@@ -11,7 +11,7 @@ public class SonidosPuerta : MonoBehaviour
     {
         if (other.CompareTag("TriggerDoor"))
         {
-            AudioSource.PlayClipAtPoint(closeDoor, transform.position, 1);
+            AudioSource.PlayClipAtPoint(closeDoor, transform.position, 100);
             Debug.Log("Puerta cerrada");
         }
     }
@@ -19,7 +19,7 @@ public class SonidosPuerta : MonoBehaviour
     {
         if (other.CompareTag("TriggerDoor"))
         {
-            AudioSource.PlayClipAtPoint(openDoor, transform.position, 1);
+            AudioSource.PlayClipAtPoint(openDoor, transform.position, 100);
             Debug.Log("Puerta abierta");
         }
     }

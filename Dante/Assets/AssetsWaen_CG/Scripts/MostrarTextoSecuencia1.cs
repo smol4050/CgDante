@@ -8,8 +8,10 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
     public TextMeshProUGUI[] textosOrdenados;
     public float tiempoEntreTextos = 1f;
     public CanvasGroup canvasGroupIntro;
-    public GameObject panelMision; // Asigna aquí el panel de misión en el inspector
+    public GameObject panelMision;
     public float fadeDuration = 1.5f;
+
+    private bool introTerminada = false;
 
     void Start()
     {
@@ -18,7 +20,6 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
             texto.gameObject.SetActive(false);
         }
 
-        // Ocultar el panel de misión al principio
         if (panelMision != null)
             panelMision.SetActive(false);
 
@@ -28,6 +29,7 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
     IEnumerator FlujoIntro()
     {
         // Fade In del panel de introducción
+        canvasGroupIntro.alpha = 0f;
         canvasGroupIntro.interactable = true;
         canvasGroupIntro.blocksRaycasts = true;
         yield return StartCoroutine(FadeCanvasGroup(canvasGroupIntro, 0f, 1f, fadeDuration));
@@ -46,9 +48,8 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
         yield return StartCoroutine(FadeCanvasGroup(canvasGroupIntro, 1f, 0f, fadeDuration));
         canvasGroupIntro.interactable = false;
         canvasGroupIntro.blocksRaycasts = false;
-        // NOTA: No se desactiva el GameObject
 
-        // Activa el panel de misión suavemente
+        // Activar el panel de misión
         if (panelMision != null)
         {
             panelMision.SetActive(true);
@@ -60,6 +61,13 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
                 cgMision.blocksRaycasts = true;
                 yield return StartCoroutine(FadeCanvasGroup(cgMision, 0f, 1f, fadeDuration));
             }
+        }
+
+        //  Llama al GameController solo una vez para continuar
+        if (!introTerminada && GameController.Instance != null)
+        {
+            introTerminada = true;
+            GameController.Instance.IniciarSecuenciaDesdeIntro();
         }
     }
 
