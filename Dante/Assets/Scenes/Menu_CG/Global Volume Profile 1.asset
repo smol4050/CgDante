@@ -86,7 +86,7 @@ MonoBehaviour:
     m_Value: 0
   earthCurvature:
     m_OverrideState: 1
-    m_Value: 0.086
+    m_Value: 0
   cloudTiling:
     m_OverrideState: 1
     m_Value: {x: 1, y: 1}
@@ -110,10 +110,10 @@ MonoBehaviour:
     m_Value: 0
   numPrimarySteps:
     m_OverrideState: 1
-    m_Value: 64
+    m_Value: 793
   numLightSteps:
     m_OverrideState: 1
-    m_Value: 6
+    m_Value: 12
   cloudMap:
     m_OverrideState: 1
     m_Value: {fileID: 0}
@@ -272,10 +272,10 @@ MonoBehaviour:
     m_Value: 0.5
   densityMultiplier:
     m_OverrideState: 1
-    m_Value: 0.097
+    m_Value: 0.156
   shapeFactor:
     m_OverrideState: 1
-    m_Value: 0.692
+    m_Value: 0.591
   shapeScale:
     m_OverrideState: 1
     m_Value: 8.27
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   erosionFactor:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.96
   erosionScale:
     m_OverrideState: 1
     m_Value: 92.4
@@ -293,10 +293,10 @@ MonoBehaviour:
     m_Value: 1
   ambientLightProbeDimmer:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.206
   sunLightDimmer:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.35
   erosionOcclusion:
     m_OverrideState: 0
     m_Value: 0.1
@@ -304,14 +304,14 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value:
       mode: 0
-      customValue: 316.6
+      customValue: 3000
       additiveValue: 0
       multiplyValue: 1
   orientation:
     m_OverrideState: 1
     m_Value:
       mode: 0
-      customValue: 165
+      customValue: 65
       additiveValue: 0
       multiplyValue: 1
   altitudeDistortion:
@@ -334,7 +334,7 @@ MonoBehaviour:
     m_Value: 0
   temporalAccumulationFactor:
     m_OverrideState: 1
-    m_Value: 0.95
+    m_Value: 0.76
   ghostingReduction:
     m_OverrideState: 1
     m_Value: 0
