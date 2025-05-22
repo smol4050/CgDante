@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu_CG.unity
     guid: e1828a31c10bb5c4bbf50e07fe0814db
   - enabled: 1
+    path: Assets/AssetsWaen_CG/EscenaIntro/IntroVideo.unity
+    guid: 9c40a9dd3d92c9a479c42f5f17aa733f
+  - enabled: 1
     path: Assets/Scenes/Waen_CG.unity
     guid: 8ba01667b053efc4cbd803c0a57a3e68
   - enabled: 1

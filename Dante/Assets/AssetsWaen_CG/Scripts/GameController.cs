@@ -55,8 +55,6 @@ public class GameController : MonoBehaviour
 
         panelCorazonesRestantes.SetActive(false);
         panelCanvasGroup.alpha = 0f;
-
-        StartCoroutine(IniciarSecuencia());
         ActualizarUI();
 
 
@@ -135,5 +133,16 @@ public class GameController : MonoBehaviour
 
         if (panelCorazonesRestantes != null)
             panelCorazonesRestantes.SetActive(restantes > 0);
+    }
+
+    public void IniciarSecuenciaDesdeIntro()
+    {
+        StartCoroutine(ContinuarDespuesIntro());
+    }
+
+    private IEnumerator ContinuarDespuesIntro()
+    {
+        panelCorazonesRestantes.SetActive(true);
+        yield return StartCoroutine(FadeInPanel(panelCanvasGroup, 3f));
     }
 }
