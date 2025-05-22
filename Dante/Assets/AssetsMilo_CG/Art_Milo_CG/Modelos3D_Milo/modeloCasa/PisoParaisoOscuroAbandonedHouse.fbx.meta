@@ -3,7 +3,12 @@ guid: 0b8d129db9ffb72449402b4db7206aaa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MaterialPuertaRoja
+    second: {fileID: 2100000, guid: 1a7ff0310e21e3b4a8f66dceaf626c65, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
