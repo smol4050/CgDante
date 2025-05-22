@@ -18,6 +18,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public PuertaFinalRoja1 puertaFinalRoja1;
     public GameObject puertaFinalRoja2;
     public AudioSource AudioEntorno;
+    public LucesController lucesController;
     //InteractionDoors InteraccionPuerta;
 
     public TextMeshProUGUI CantidadPuertas;
@@ -38,7 +39,6 @@ public class GameController_ParaisoOscuro : MonoBehaviour
         enemigoController = FindObjectOfType<EnemyController_Paraiso>();
 
         puertaFinalRoja2.SetActive(false); // Desactiva la puerta final roja 2 al inicio
-        AudioEntorno = GetComponent<AudioSource>();
         AudioEntorno.Stop();
     }
 
@@ -61,6 +61,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             else
                 Debug.LogWarning("Un esqueleto está sin asignar en el array.");
         }
+        lucesController.TitilarLuces(); // Inicia el titileo de luces
 
         Debug.Log("Estado: Jugando");
     }
@@ -76,7 +77,9 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             else
                 Debug.LogWarning("Un esuqeleto no se pudo apagar");
         }
-        
+
+        lucesController.EncenderLuzNormal(); // Detiene el titileo de luces
+
         puertaFinalRoja1.AbrirPuerta(); // Abre la puerta final
         puertaFinalRoja2.SetActive(true); // Activa la puerta final roja 2
         AudioEntorno.Stop(); // Detiene el audio del entorno
