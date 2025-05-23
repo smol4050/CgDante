@@ -73,4 +73,13 @@ public class PausarReanudar : MonoBehaviour
 
         SceneManager.LoadScene("Menu_CG"); // <-- Cambia esto por el nombre real de tu escena de menú
     }
+
+    public void ReiniciarJuego()
+    {
+        Time.timeScale = 1f; // Asegura que el tiempo vuelva a la normalidad
+        if (audioListener != null)
+            audioListener.enabled = true;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

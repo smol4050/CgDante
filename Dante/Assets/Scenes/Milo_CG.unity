@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2664.6624, g: 1227.8732, b: 379.9468, a: 1}
+  m_IndirectSpecularColor: {r: 2674.3225, g: 1235.048, b: 383.97513, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3849,6 +3849,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: _PrincipalPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 435628966209392646, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: _gravity
@@ -3912,7 +3917,7 @@ PrefabInstance:
     - target: {fileID: 8977297172576663587, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3.1936035
+      value: 2.9844222
       objectReference: {fileID: 0}
     - target: {fileID: 8977297172576663587, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -3927,7 +3932,7 @@ PrefabInstance:
     - target: {fileID: 8977297172576663587, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7979255
+      value: -1.6934
       objectReference: {fileID: 0}
     - target: {fileID: 8977297172576663587, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -4010,6 +4015,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasPausa
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036209181477408482, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -4.3598633
       objectReference: {fileID: 0}
     - target: {fileID: 7766996538248451766, guid: ff6feb32659107b4384ca3a2562e05bd,
         type: 3}
@@ -4109,6 +4119,26 @@ PrefabInstance:
     - target: {fileID: 7766996538248451766, guid: ff6feb32659107b4384ca3a2562e05bd,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8241287293287832471, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450419926262960474, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458298613862244078, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 488.59814
+      objectReference: {fileID: 0}
+    - target: {fileID: 8458298613862244078, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7948,9 +7978,8 @@ MonoBehaviour:
   AudioEntorno: {fileID: 266019765}
   lucesController: {fileID: 1979997047}
   CantidadPuertas: {fileID: 1401336436}
-  objetosRecolectadosEscena: 0
-  objetosNecesariosEscena: 10
   textoPuntaje: {fileID: 1400051342}
+  objetosNecesariosEscena: 10
   puertasAbiertas: 0
   puertasNecesarias2daParte: 8
   puertasNecesariasTerminar: 16
@@ -8661,6 +8690,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _CanvasPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 8621174339984644603, guid: 80f04f51c25c06a4fa72c71e01f87028,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 62.399902
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16940,6 +16974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e44de07acb5af04380663748d2c18c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombreEscena: Smol_CG
 --- !u!1 &2075552695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3490221514605040018, guid: 0b8d129db9ffb72449402b4db7206aaa,
