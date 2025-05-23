@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 4
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -1823,6 +1823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _CanvasPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 7262547514006918275, guid: 80f04f51c25c06a4fa72c71e01f87028,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5129,6 +5134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasPausa
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605548321617963014, guid: ff6feb32659107b4384ca3a2562e05bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7766996538248451766, guid: ff6feb32659107b4384ca3a2562e05bd,
         type: 3}
