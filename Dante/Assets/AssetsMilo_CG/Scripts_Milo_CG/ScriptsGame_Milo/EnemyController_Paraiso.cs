@@ -85,6 +85,7 @@ public class EnemyController_Paraiso : MonoBehaviour
             {
                 jugadorPerdio = true;
                 Debug.Log("¡PERDISTE!");
+                FindObjectOfType<PausarReanudar>().MostrarGameOver();
                 // Puedes llamar aquí a GameOver
                 break;
             }
