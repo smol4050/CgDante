@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PausarReanudar : MonoBehaviour
 {
-    public GameObject menuPausa; // Este también será el panel de Game Over (o puedes usar otro)
+    public GameObject menuPausa; 
     public GameObject GameOver;
-    private AudioListener audioListener;
+    public AudioListener audioListener;
+
+    GameManager gm;
+
+
 
     private void Start()
     {
         menuPausa.SetActive(false);
-        audioListener = FindObjectOfType<AudioListener>();
+        GameOver.SetActive(false);
+        gm = GameManager.Instance;
     }
 
     void Update()
@@ -49,8 +54,10 @@ public class PausarReanudar : MonoBehaviour
 
     public void MostrarGameOver()
     {
+        gm.ReiniciarObjetosDelNivelActual();
+
         Time.timeScale = 0f;
-        GameOver.SetActive(true); // O un panel de game over específico
+        GameOver.SetActive(true);
 
         if (audioListener != null)
             audioListener.enabled = false;
@@ -59,6 +66,8 @@ public class PausarReanudar : MonoBehaviour
         Cursor.visible = true;
         PlayerController.Instance.canMove = false;
     }
+
+    
 
     public void ReanudarJuego()
     {
@@ -79,6 +88,8 @@ public class PausarReanudar : MonoBehaviour
         if (audioListener != null)
             audioListener.enabled = true;
 
+        gm.ReiniciarObjetosDelNivelActual();
+
         SceneManager.LoadScene("Menu_CG");
     }
 
@@ -87,6 +98,8 @@ public class PausarReanudar : MonoBehaviour
         Time.timeScale = 1f;
         if (audioListener != null)
             audioListener.enabled = true;
+
+        gm.ReiniciarObjetosDelNivelActual(); // Restablece el contador de objetos recolectados
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
