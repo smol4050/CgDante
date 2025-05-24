@@ -11,7 +11,16 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CambiarEscenaInicio(nombreEscenaDestino);
+            string siguienteNivel = GameManager.Instance.ObtenerSiguienteNivelNoCompletado();
+            if (!string.IsNullOrEmpty(siguienteNivel))
+            {
+                SceneManager.LoadScene(siguienteNivel);
+            }
+            else
+            {
+                Debug.Log("No hay más niveles por jugar.");
+                // Puedes cargar una escena de créditos o volver al menú
+            }
         }
     }
 
@@ -38,5 +47,12 @@ public class MenuManager : MonoBehaviour
     public void ButtonSonido()
     {
         AudioSource.PlayClipAtPoint(sonidoBoton, Camera.main.transform.position, 50f);
+    }
+
+    public void NuevaPartida(string rafa)
+    {
+        JsonGuardado.BorrarProgreso(); // Borra el progreso guardado
+        GameManager.Instance.InicializarProgreso(); 
+        SceneManager.LoadScene(rafa);
     }
 }

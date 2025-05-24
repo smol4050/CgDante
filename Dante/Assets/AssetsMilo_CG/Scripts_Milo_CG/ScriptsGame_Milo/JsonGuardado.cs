@@ -17,7 +17,7 @@ public static class JsonGuardado
     public static DatosGuardados CargarDatos()
     {
         if (File.Exists(rutaArchivo))
-        {
+        {   
             string json = File.ReadAllText(rutaArchivo);
             return JsonUtility.FromJson<DatosGuardados>(json);
         }
@@ -35,5 +35,10 @@ public static class JsonGuardado
             File.Delete(rutaArchivo);
             Debug.Log("Archivo de progreso borrado.");
         }
+    }
+
+    public static string ObtenerRuta()
+    {
+        return rutaArchivo;
     }
 }

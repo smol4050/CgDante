@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 43.912983, g: 19.834703, b: 5.9314427, a: 1}
+  m_IndirectSpecularColor: {r: 43.91524, g: 19.83597, b: 5.9317975, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9026,9 +9026,9 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
-  MinDistance: 6.32
-  MaxDistance: 16.73
+  DopplerLevel: 0
+  MinDistance: 21.9
+  MaxDistance: 40.9
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -9124,7 +9124,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 0
   MinDistance: 8.2
-  MaxDistance: 42.86
+  MaxDistance: 63.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

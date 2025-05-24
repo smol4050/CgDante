@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,9 +22,17 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InicializarProgreso();
 
-            CargarProgresoDesdeJson();
+            if (File.Exists(JsonGuardado.ObtenerRuta()))
+            {
+                CargarProgresoDesdeJson();
+                Debug.Log("Progreso cargado desde JSON.");
+            }
+            else
+            {
+                InicializarProgreso();
+                Debug.Log("Progreso inicializado.");
+            }
         }
         else
         {
@@ -31,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void InicializarProgreso()
+    public void InicializarProgreso()
     {
         // Agrega aquí los nombres REALES de tus escenas
         progresoPorNivel.Add(new ProgresoNivel("Waen_CG"));
@@ -76,7 +85,22 @@ public class GameManager : MonoBehaviour
         {
             progreso.nivelCompletado = true;
             Debug.Log($"Nivel completado: {progreso.nombreNivel}");
+            GuardarProgresoEnJson(); // Guardamos el progreso justo cuando se completa el nivel
         }
+    }
+
+    public string ObtenerSiguienteNivelNoCompletado()
+    {
+        foreach (ProgresoNivel nivel in progresoPorNivel)
+        {
+            if (!nivel.nivelCompletado)
+            {
+                return nivel.nombreNivel;
+            }
+        }
+
+        Debug.Log("Todos los niveles están completados.");
+        return null; // Puedes devolver un nombre especial como "Creditos" si quieres
     }
 
     public void ReiniciarObjetosDelNivelActual()
