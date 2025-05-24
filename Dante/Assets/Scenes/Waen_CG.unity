@@ -3539,7 +3539,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -8410,6 +8410,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
+      propertyPath: _runSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: _moveSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
       propertyPath: _standHeight
       value: 2
       objectReference: {fileID: 0}
@@ -9882,7 +9892,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10796,6 +10806,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
       propertyPath: jugador
@@ -11618,7 +11633,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -15724,7 +15739,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.492
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16538,6 +16553,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
       propertyPath: jugador
@@ -16939,6 +16959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
@@ -20667,6 +20692,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 330484683}
     m_Modifications:
+    - target: {fileID: 731829700155497342, guid: 9017519f344286c4ab54362cfc4d4f71,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3293058749157614004, guid: 9017519f344286c4ab54362cfc4d4f71,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
