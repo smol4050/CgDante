@@ -3,24 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Controla la inteligencia artificial del enemigo, incluyendo patrullaje, persecución y ataque al jugador.
+/// </summary>
 public class EnemigoIA : MonoBehaviour
 {
-
+    /// <summary>
+    /// Transform del jugador para seguimiento y ataque.
+    /// </summary>
     public Transform jugador;
+
+    /// <summary>
+    /// Distancia máxima a la que el enemigo puede detectar al jugador.
+    /// </summary>
     public float rangoVision = 10f;
+
+    /// <summary>
+    /// Distancia a la que el enemigo puede atacar al jugador.
+    /// </summary>
     public float rangoAtaque = 2f;
-    public List<Transform> puntosPatrullaje; // Lista de puntos de patrullaje
+
+    /// <summary>
+    /// Lista de puntos de patrullaje por los que el enemigo se mueve cuando no persigue al jugador.
+    /// </summary>
+    public List<Transform> puntosPatrullaje;
 
     private NavMeshAgent agente;
     private Animator animador;
     private int puntoActual = 0;
     private float tiempoParaNuevoDestino = 5f;
+    private float tiempoEntreGolpes = 2f;
+    private float tiempoUltimoGolpe = 0f;
+    public float delayParaGolpe = 0.5f;
 
-    private float tiempoEntreGolpes = 2f; // Tiempo mínimo entre golpes
-    private float tiempoUltimoGolpe = 0f;   // Última vez que golpeó
-
-    public float delayParaGolpe = 0.5f; // Delay entre animación y golpe real
-
+    /// <summary>
+    /// Inicializa referencias y establece el primer destino de patrullaje.
+    /// </summary>
     void Start()
     {
         agente = GetComponent<NavMeshAgent>();
@@ -28,6 +46,11 @@ public class EnemigoIA : MonoBehaviour
         ElegirNuevoDestino();
     }
 
+    /// <summary>
+    /// Actualiza el comportamiento del enemigo cada frame:
+    /// - Patrulla puntos de interés si el jugador está lejos.
+    /// - Persigue y ataca si el jugador está cerca.
+    /// </summary>
     void Update()
     {
         float distancia = Vector3.Distance(transform.position, jugador.position);
@@ -46,9 +69,9 @@ public class EnemigoIA : MonoBehaviour
 
                 if (Time.time - tiempoUltimoGolpe >= tiempoEntreGolpes)
                 {
-                    // Aquí lanzamos el golpe con delay
+                    // Ejecutar ataque con delay
                     StartCoroutine(GolpeConDelay(delayParaGolpe));
-                    tiempoUltimoGolpe = Time.time; // marcamos el tiempo del último golpe
+                    tiempoUltimoGolpe = Time.time;
                 }
             }
             else
@@ -60,10 +83,8 @@ public class EnemigoIA : MonoBehaviour
         {
             animador.SetBool("Atacando", false);
 
-            // Verifica si ha llegado a su destino aleatorio
             if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance && !agente.hasPath)
             {
-                // En punto de espera (Idle)
                 agente.isStopped = true;
                 animador.SetBool("Idle", true);
 
@@ -71,33 +92,38 @@ public class EnemigoIA : MonoBehaviour
                 if (tiempoParaNuevoDestino <= 0f)
                 {
                     ElegirNuevoDestino();
-                    tiempoParaNuevoDestino = Random.Range(2f, 4f); // Nuevos tiempos de espera aleatorios
-                    animador.SetBool("Idle", false); // volver a caminar
+                    tiempoParaNuevoDestino = Random.Range(2f, 4f);
+                    animador.SetBool("Idle", false);
                     agente.isStopped = false;
                 }
             }
             else
             {
-                // Está en movimiento
                 animador.SetBool("Idle", false);
                 agente.isStopped = false;
             }
         }
     }
 
+    /// <summary>
+    /// Selecciona el siguiente punto de patrullaje y establece el destino para el NavMeshAgent.
+    /// </summary>
     void ElegirNuevoDestino()
     {
         if (puntosPatrullaje.Count == 0)
             return;
 
-        // Selecciona el siguiente punto de patrullaje de la lista
         Transform destino = puntosPatrullaje[puntoActual];
         agente.SetDestination(destino.position);
 
-        // Actualiza el índice del punto actual para patrullar en el siguiente
         puntoActual = (puntoActual + 1) % puntosPatrullaje.Count;
     }
 
+    /// <summary>
+    /// Corrutina que espera un tiempo determinado antes de aplicar daño al jugador si está en rango.
+    /// </summary>
+    /// <param name="delay">Tiempo en segundos antes de aplicar el golpe.</param>
+    /// <returns>IEnumerator para corrutina.</returns>
     private IEnumerator GolpeConDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -107,5 +133,4 @@ public class EnemigoIA : MonoBehaviour
             jugador.GetComponent<PlayerHealth>()?.RecibirGolpe();
         }
     }
-
 }

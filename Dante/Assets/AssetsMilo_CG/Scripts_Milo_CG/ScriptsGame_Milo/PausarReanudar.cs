@@ -54,7 +54,6 @@ public class PausarReanudar : MonoBehaviour
 
     public void MostrarGameOver()
     {
-        gm.ReiniciarObjetosDelNivelActual();
 
         Time.timeScale = 0f;
         GameOver.SetActive(true);

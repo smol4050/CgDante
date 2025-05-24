@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public List<ProgresoNivel> progresoPorNivel = new List<ProgresoNivel>();
-    public int totalObjetosPorNivel = 10; // Puedes cambiar esto por nivel si deseas
+    public int totalObjetosPorNivel = 10;
+
+    //  Evento que se dispara cuando se recolecta un objeto
+    public event Action OnObjetoRecolectado;
 
     private void Awake()
     {
@@ -47,6 +51,8 @@ public class GameManager : MonoBehaviour
 
         progreso.objetosRecolectados++;
         Debug.Log($"[{progreso.nombreNivel}] Objetos recolectados: {progreso.objetosRecolectados}/{totalObjetosPorNivel}");
+
+        OnObjetoRecolectado?.Invoke();
 
         if (progreso.objetosRecolectados >= totalObjetosPorNivel)
         {
