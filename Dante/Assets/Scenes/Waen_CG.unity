@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
+  m_IndirectSpecularColor: {r: 0.13462523, g: 0.11139244, b: 0.07547999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1696,57 +1696,57 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 357525637}
+    m_TransformParent: {fileID: 689146034}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.085152835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.085152835
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.7400002
+      value: 0.04893841
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.0479417
+      value: 0.27000004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19964057
+      value: -0.24400009
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.54128706
+      value: 1.2170008
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
@@ -1776,7 +1776,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b518ff87e49095f47a99aa2dd4993b58,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3415,38 +3415,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4965656971402521054, guid: e6308d4c9489aff4cb3a8118f8b18041, type: 3}
---- !u!1 &357525636
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 357525637}
-  m_Layer: 0
-  m_Name: LightHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &357525637
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 357525636}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.25300008, y: -0.2592241, z: 0.70200145}
-  m_LocalScale: {x: 0.085152835, y: 0.085152835, z: 0.02812552}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2022799795}
-  m_Father: {fileID: 689146034}
-  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
 --- !u!1 &377181454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4902184688011465338, guid: 9017519f344286c4ab54362cfc4d4f71,
@@ -8359,7 +8327,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2635834454626047857, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 357525637}
+      addedObject: {fileID: 2022799795}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 256298240069659442, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -10369,7 +10337,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24305,13 +24273,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2102507103}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5234133, y: 0.42996958, z: 0.47543517, w: 0.561361}
-  m_LocalPosition: {x: 2.5194867, y: 0.02, z: 0.02}
+  m_LocalRotation: {x: 0.5044308, y: 0.4470078, z: 0.49552962, w: 0.54789054}
+  m_LocalPosition: {x: -1.83, y: -1.8, z: 3.74}
   m_LocalScale: {x: 11.74359, y: 11.74359, z: 11.74359}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2022799795}
-  m_LocalEulerAnglesHint: {x: 10.3, y: 85.2, z: 90}
+  m_LocalEulerAnglesHint: {x: 6.3, y: 84.72, z: 90}
 --- !u!114 &2102507105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24324,10 +24292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 898.84
+  m_Intensity: 835.3099
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
-  m_InnerSpotPercent: 54.2
+  m_InnerSpotPercent: 45.9
   m_SpotIESCutoffPercent: 100
   m_LightDimmer: 1
   m_VolumetricDimmer: 1
@@ -24340,7 +24308,7 @@ MonoBehaviour:
   m_ShapeWidth: 0.5
   m_ShapeHeight: 0.5
   m_AspectRatio: 1
-  m_ShapeRadius: 0.51
+  m_ShapeRadius: 0
   m_SoftnessScale: 1
   m_UseCustomSpotLightShadowCone: 0
   m_CustomSpotLightShadowCone: 1
@@ -24446,9 +24414,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 254.71417
+  m_Intensity: 463.62305
   m_Range: 16.23
-  m_SpotAngle: 128
+  m_SpotAngle: 89
   m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
@@ -24494,7 +24462,7 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0.51
+  m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!1 &2104912679
 GameObject:
