@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             InicializarProgreso();
+
+            CargarProgresoDesdeJson();
         }
         else
         {
@@ -87,6 +89,39 @@ public class GameManager : MonoBehaviour
     public void CambiarEscena(string nombreEscena)
     {
         SceneManager.LoadScene(nombreEscena);
+    }
+
+
+    public void GuardarProgresoEnJson()
+    {
+        DatosGuardados datos = new DatosGuardados();
+
+        foreach (ProgresoNivel prog in progresoPorNivel)
+        {
+            datos.progresoPorNivel.Add(new ProgresoNivelGuardado
+            {
+                nombreNivel = prog.nombreNivel,
+                objetosRecolectados = prog.objetosRecolectados,
+                nivelCompletado = prog.nivelCompletado
+            });
+        }
+
+        JsonGuardado.GuardarDatos(datos);
+    }
+
+    public void CargarProgresoDesdeJson()
+    {
+        DatosGuardados datos = JsonGuardado.CargarDatos();
+        progresoPorNivel.Clear();
+
+        foreach (ProgresoNivelGuardado prog in datos.progresoPorNivel)
+        {
+            progresoPorNivel.Add(new ProgresoNivel(prog.nombreNivel)
+            {
+                objetosRecolectados = prog.objetosRecolectados,
+                nivelCompletado = prog.nivelCompletado
+            });
+        }
     }
 }
     //public static GameManager Instance;

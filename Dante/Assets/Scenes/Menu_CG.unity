@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 3427.7988, g: 3859.1794, b: 3517.02, a: 1}
+  m_IndirectSpecularColor: {r: 1695.5603, g: 1908.8854, b: 1739.849, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2406,8 +2406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c784bf7593efa64293ddb28b6098817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objetosRecolectados: 0
-  totalObjetos: 10
+  progresoPorNivel: []
+  totalObjetosPorNivel: 10
 --- !u!4 &531377030
 Transform:
   m_ObjectHideFlags: 0
@@ -5028,7 +5028,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1315112590
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6633,7 +6633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1608467803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6710,7 +6710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1671040052
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6861,7 +6861,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Waen_CG
+          m_StringArgument: IntroVideo
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 886261982}
