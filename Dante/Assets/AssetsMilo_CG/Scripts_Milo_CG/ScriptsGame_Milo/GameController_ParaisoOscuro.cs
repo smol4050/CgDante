@@ -40,6 +40,13 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     {
         estadoActual = GameState.PreInicio;
         gm = GameManager.Instance;
+
+        if (gm != null)
+        {
+            // Suscribirse al evento
+            gm.OnObjetoRecolectado += ObjetoRecolectado;
+        }
+
         enemigoController = FindObjectOfType<EnemyController_Paraiso>();
 
         puertaFinalRoja2.SetActive(false);
@@ -48,6 +55,15 @@ public class GameController_ParaisoOscuro : MonoBehaviour
         // Actualiza el contador de UI desde GameManager
         int recolectados = gm.ObtenerObjetosRecolectados();
         textoPuntaje.text = recolectados.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        if (gm != null)
+        {
+            //Siempre desuscribirse para evitar memory leaks
+            gm.OnObjetoRecolectado -= ObjetoRecolectado;
+        }
     }
 
     public void EstadoJugandoTutorial()
@@ -159,7 +175,6 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     {
         if (gm != null)
         {
-            gm.SumarObjeto(); // Usa el contador por escena
             int recolectados = gm.ObtenerObjetosRecolectados();
             textoPuntaje.text = recolectados.ToString();
 
