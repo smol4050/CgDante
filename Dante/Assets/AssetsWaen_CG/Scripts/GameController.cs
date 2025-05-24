@@ -60,21 +60,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    private IEnumerator IniciarSecuencia()
-    {
-        yield return StartCoroutine(mostrarTextoSecuencia1());
-
-        // Luego de mostrar el texto, aparece el panel con fade
-        panelCorazonesRestantes.SetActive(true);
-        StartCoroutine(FadeInPanel(panelCanvasGroup, 3f));
-    }
-
-    private IEnumerator mostrarTextoSecuencia1()
-    {
-        // Simula un texto inicial
-        yield return new WaitForSeconds(2f);
-        // Aquí pondrías la lógica real de mostrar el texto inicial
-    }
 
     private IEnumerator FadeInPanel(CanvasGroup canvasGroup, float duration)
     {
