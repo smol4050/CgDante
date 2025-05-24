@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3539,7 +3539,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -5643,6 +5643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577829ad87099604097fb4e5a1ee9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _examineDuration: 4
 --- !u!135 &473065143
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8409,6 +8410,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
+      propertyPath: _runSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: _moveSpeed
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
       propertyPath: _standHeight
       value: 2
       objectReference: {fileID: 0}
@@ -9881,7 +9892,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -10588,7 +10599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &832575518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10794,6 +10805,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
@@ -11617,7 +11633,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12677,6 +12693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577829ad87099604097fb4e5a1ee9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _examineDuration: 4
 --- !u!1001 &1023670793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12989,6 +13006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577829ad87099604097fb4e5a1ee9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _examineDuration: 4
 --- !u!1001 &1033850888
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14185,6 +14203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577829ad87099604097fb4e5a1ee9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _examineDuration: 4
 --- !u!1 &1094150196 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 350954554440096558, guid: 1aff21b7573313549b0c7690d9a76927,
@@ -15720,7 +15739,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6eaf27f308d792044a3bec2fdb491e5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.492
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16534,6 +16553,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
       propertyPath: jugador
@@ -16935,6 +16959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667354882721538438, guid: 1aff21b7573313549b0c7690d9a76927,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4822986137697317516, guid: 1aff21b7573313549b0c7690d9a76927,
         type: 3}
@@ -17739,6 +17768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5668304976923580055, guid: 4a9bd4af5d0dbea4581687bf1a699c2d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -4683669308469848369, guid: 4a9bd4af5d0dbea4581687bf1a699c2d,
         type: 3}
@@ -20658,6 +20692,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 330484683}
     m_Modifications:
+    - target: {fileID: 731829700155497342, guid: 9017519f344286c4ab54362cfc4d4f71,
+        type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3293058749157614004, guid: 9017519f344286c4ab54362cfc4d4f71,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -24082,6 +24121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 577829ad87099604097fb4e5a1ee9bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _examineDuration: 4
 --- !u!1 &1972493729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8241287293287832471, guid: ff6feb32659107b4384ca3a2562e05bd,
