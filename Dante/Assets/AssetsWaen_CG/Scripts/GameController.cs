@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public static GameController Instance;
+    private GameManager gm;
 
     public int totalCorazones;
     public int corazonesRecolectados = 0;
@@ -16,6 +17,8 @@ public class GameController : MonoBehaviour
     public GameObject panelCorazonesRestantes;
     public CanvasGroup panelCanvasGroup;
     public PuertaController puerta;
+    public TextMeshProUGUI textoPuntaje;
+    public int objetosNecesariosEscena = 10;
 
     public List<NewBehaviourScript> puertasBloqueadas;
 
@@ -57,7 +60,27 @@ public class GameController : MonoBehaviour
         panelCanvasGroup.alpha = 0f;
         ActualizarUI();
 
+        gm = GameManager.Instance;
 
+        if (gm != null)
+        {
+            // Suscribirse al evento
+            gm.OnObjetoRecolectado += ObjetoRecolectado;
+        }
+
+        int recolectados = gm.ObtenerObjetosRecolectados();
+        textoPuntaje.text = recolectados.ToString();
+
+
+    }
+
+    private void OnDestroy()
+    {
+        if (gm != null)
+        {
+            //Siempre desuscribirse para evitar memory leaks
+            gm.OnObjetoRecolectado -= ObjetoRecolectado;
+        }
     }
 
 
@@ -129,5 +152,21 @@ public class GameController : MonoBehaviour
     {
         panelCorazonesRestantes.SetActive(true);
         yield return StartCoroutine(FadeInPanel(panelCanvasGroup, 3f));
+    }
+    public void ObjetoRecolectado()
+    {
+        if (gm != null)
+        {
+            int recolectados = gm.ObtenerObjetosRecolectados();
+            textoPuntaje.text = recolectados.ToString();
+
+            // Si necesitas hacer algo al alcanzar todos los objetos del nivel:
+            if (recolectados >= objetosNecesariosEscena)
+            {
+                Debug.Log("Se han recolectado todos los objetos de este nivel.");
+                //gm.CompletarNivel();
+                // Activar algún evento especial si aplica
+            }
+        }
     }
 }
