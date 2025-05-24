@@ -5,14 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PausarReanudar : MonoBehaviour
 {
-    public GameObject menuPausa;
-    private AudioListener audioListener;
+    public GameObject menuPausa; 
+    public GameObject GameOver;
+    public AudioListener audioListener;
+
+    GameManager gm;
+
+
 
     private void Start()
     {
-        // Asegúrate de que el menú de pausa esté oculto al inicio
         menuPausa.SetActive(false);
-        audioListener = FindObjectOfType<AudioListener>();
+        GameOver.SetActive(false);
+        gm = GameManager.Instance;
     }
 
     void Update()
@@ -31,9 +36,7 @@ public class PausarReanudar : MonoBehaviour
         menuPausa.SetActive(!isPaused);
 
         if (audioListener != null)
-        {
             audioListener.enabled = !isPaused;
-        }
 
         if (!isPaused)
         {
@@ -49,36 +52,54 @@ public class PausarReanudar : MonoBehaviour
         }
     }
 
-    public void ReanudarJuego() // (opcional)
+    public void MostrarGameOver()
+    {
+        gm.ReiniciarObjetosDelNivelActual();
+
+        Time.timeScale = 0f;
+        GameOver.SetActive(true);
+
+        if (audioListener != null)
+            audioListener.enabled = false;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PlayerController.Instance.canMove = false;
+    }
+
+    
+
+    public void ReanudarJuego()
     {
         Time.timeScale = 1f;
         menuPausa.SetActive(false);
 
         if (audioListener != null)
-        {
             audioListener.enabled = true;
-        }
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
         PlayerController.Instance.canMove = true;
     }
 
     public void IrAlMenu()
     {
-        Time.timeScale = 1f; // Asegúrate de reactivar el tiempo al cambiar de escena
+        Time.timeScale = 1f;
         if (audioListener != null)
             audioListener.enabled = true;
 
-        SceneManager.LoadScene("Menu_CG"); // <-- Cambia esto por el nombre real de tu escena de menú
+        gm.ReiniciarObjetosDelNivelActual();
+
+        SceneManager.LoadScene("Menu_CG");
     }
 
     public void ReiniciarJuego()
     {
-        Time.timeScale = 1f; // Asegura que el tiempo vuelva a la normalidad
+        Time.timeScale = 1f;
         if (audioListener != null)
             audioListener.enabled = true;
+
+        gm.ReiniciarObjetosDelNivelActual(); // Restablece el contador de objetos recolectados
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

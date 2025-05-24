@@ -84,7 +84,9 @@ public class EnemyController_Paraiso : MonoBehaviour
             if (InteractionDoors.EstadoPuertas[indiceActual] == true)
             {
                 jugadorPerdio = true;
+                gameC.EstadoGameOver();
                 Debug.Log("¡PERDISTE!");
+                //FindObjectOfType<PausarReanudar>().MostrarGameOver();
                 // Puedes llamar aquí a GameOver
                 break;
             }
