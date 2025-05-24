@@ -8,6 +8,7 @@ public class EnemyController_Paraiso : MonoBehaviour
     private GameController_ParaisoOscuro gameC;
     public GameObject[] puntosDeAparicion; // Asigna aquí tus 4 esferas
     public float tiempoParaReaccionar = 15f;
+    public float speedEnemy = 1f; // Velocidad del enemigo
     public AudioSource audioSource;
     public AudioClip[] sonidosPuerta; // Un sonido distinto por puerta
 
@@ -65,7 +66,7 @@ public class EnemyController_Paraiso : MonoBehaviour
 
             // Esperar por reacción del jugador
             float tiempo = 0f;
-            while (tiempo < tiempoParaReaccionar)
+            while (tiempo < tiempoParaReaccionar*speedEnemy)
             {
                 if (InteractionDoors.EstadoPuertas[indiceActual] == false)
                 {

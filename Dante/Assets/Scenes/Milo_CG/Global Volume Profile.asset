@@ -238,15 +238,15 @@ MonoBehaviour:
   globalWindSpeed:
     m_OverrideState: 1
     m_Value:
-      mode: 1
-      customValue: 100
+      mode: 0
+      customValue: 100000
       additiveValue: 0
       multiplyValue: 1
   orientation:
     m_OverrideState: 1
     m_Value:
-      mode: 1
-      customValue: 0
+      mode: 0
+      customValue: 112
       additiveValue: 0
       multiplyValue: 1
   altitudeDistortion:
@@ -396,16 +396,16 @@ MonoBehaviour:
           time: 0
           value: 0
           inSlope: 0
-          outSlope: 2.7743921
+          outSlope: 0.89372516
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.97830373
-          value: 0.7211261
-          inSlope: 0.7003507
-          outSlope: 0.7003507
+          time: 1
+          value: 0.7652633
+          inSlope: -1.2188376
+          outSlope: -1.2188376
           tangentMode: 0
           weightedMode: 0
           inWeight: 0
