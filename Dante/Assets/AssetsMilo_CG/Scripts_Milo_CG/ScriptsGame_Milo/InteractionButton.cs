@@ -61,5 +61,7 @@ public class InteractionButton : MonoBehaviour, IInteractuable
 
         transform.localPosition = posicionOriginal;
         enMovimiento = false;
+
+        GameObject.Destroy(gameObject); // Destruye el botón después de usarlo
     }
 }

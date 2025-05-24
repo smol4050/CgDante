@@ -8,7 +8,8 @@ public enum GameState
     PreInicio,
     JugandoTutorial,
     Jugando,
-    FinJuego
+    FinJuego,
+    GameOver
 }
 public class GameController_ParaisoOscuro : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public int puertasAbiertas = 0;
     public int puertasNecesarias2daParte = 8;
     public int puertasNecesariasTerminar = 20;
+
+    public PausarReanudar pausarReanudar;
+
 
     private GameManager gm;
 
@@ -92,6 +96,42 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 
         Debug.Log("Estado: FinJuego");
     }
+
+    public void EstadoGameOver()
+    {
+        estadoActual = GameState.GameOver;
+        //enemigoController.DetenerRutinaEnemigo1();
+        foreach (var esqueleto in esqueletos)
+        {
+            if (esqueleto != null)
+                esqueleto.ActivarEsqueleto();
+            else
+                Debug.LogWarning("MomentoGameOver fue interrumpido");
+        }
+        
+        Debug.Log("Estado: GameOver");
+        StartCoroutine(MostrarGameOverConDelay());
+
+        gm.ReiniciarObjetosDelNivelActual(); // Restablece el contador de objetos recolectados
+
+    }
+
+    private IEnumerator MostrarGameOverConDelay()
+    {
+
+        if (lucesController != null)
+        {
+            lucesController.ActivarAmbientePerdida();
+        }
+
+        yield return null;
+
+        // Esperar segundos antes de mostrar el panel
+        yield return new WaitForSeconds(10f); // aquí eliges cuánto esperar
+
+        pausarReanudar.MostrarGameOver();
+    }
+
 
     public void PuertaCerradaCorrectamente()
     {
