@@ -12,6 +12,12 @@ public class LucesController : MonoBehaviour
     public float tiempoTitileoMax = 0.2f;
     public float duracionTitileo = 3f;
 
+    [Header("Luces para ambiente de pérdida")]
+    public GameObject lucesFinales;           // Luces nuevas tipo dramáticas
+    public Light luzPrincipal;                // Directional Light
+    public float nuevaIntensidad = 0.2f;      // Intensidad bajada
+    public GameObject lucesIniciales;         // Luces que quieres apagar
+
     private Coroutine coroutineTitileo;
 
     // Llama este método para encender las luces normalmente
@@ -56,13 +62,27 @@ public class LucesController : MonoBehaviour
             tiempoPasado += tiempoEspera;
         }
 
-        // Al final, las apaga o prende según lo que necesites
         foreach (Light luz in luces)
         {
             if (luz != null)
-                luz.enabled = false; // o true si quieres que terminen encendidas
+                luz.enabled = false;
         }
 
         coroutineTitileo = null;
+    }
+
+    //Nuevo método para ambiente de pérdida
+    public void ActivarAmbientePerdida()
+    {
+        if (lucesFinales != null)
+            lucesFinales.SetActive(true);
+
+        if (luzPrincipal != null)
+            luzPrincipal.intensity = nuevaIntensidad;
+
+        if (lucesIniciales != null)
+            lucesIniciales.SetActive(false);
+
+        Debug.Log("Ambiente de pérdida activado.");
     }
 }

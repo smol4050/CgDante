@@ -16,9 +16,12 @@ public class PlayerHealth : MonoBehaviour
     private int hitsReceived = 0;
     private bool isDead = false;
 
+    public PausarReanudar pausarReanudar;
+
     private void Start()
     {
         SetPanelAlpha(0f); // Asegura que comience invisible
+        
     }
 
     private void Update()
@@ -66,6 +69,14 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Jugador ha muerto.");
-        // Aquí puedes agregar animación, desactivar control, etc.
+
+        if (pausarReanudar != null)
+        {
+            pausarReanudar.MostrarGameOver();
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró el script PausarReanudar en la escena.");
+        }
     }
 }
