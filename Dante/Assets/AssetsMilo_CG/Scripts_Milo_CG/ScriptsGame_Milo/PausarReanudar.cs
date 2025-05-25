@@ -18,6 +18,8 @@ public class PausarReanudar : MonoBehaviour
         menuPausa.SetActive(false);
         GameOver.SetActive(false);
         gm = GameManager.Instance;
+
+        AudioListener.volume = 1f; // Asegúrate de que el volumen esté al máximo al iniciar el juego
     }
 
     void Update()
@@ -59,7 +61,7 @@ public class PausarReanudar : MonoBehaviour
         GameOver.SetActive(true);
 
         if (audioListener != null)
-            audioListener.enabled = false;
+            AudioListener.volume = 0f;
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

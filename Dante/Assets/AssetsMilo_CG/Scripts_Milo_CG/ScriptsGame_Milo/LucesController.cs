@@ -19,6 +19,10 @@ public class LucesController : MonoBehaviour
     public GameObject lucesIniciales;         // Luces que quieres apagar
 
     private Coroutine coroutineTitileo;
+ // Arrastra tu luz direccional desde el Inspector
+    public float velocidadTransicion = 1f;
+
+    public Coroutine transicionLuzActual;
 
     // Llama este método para encender las luces normalmente
     public void EncenderLuzNormal()
@@ -78,11 +82,29 @@ public class LucesController : MonoBehaviour
             lucesFinales.SetActive(true);
 
         if (luzPrincipal != null)
-            luzPrincipal.intensity = nuevaIntensidad;
+            StartCoroutine(TransicionIntensidadLuz(nuevaIntensidad));
 
         if (lucesIniciales != null)
             lucesIniciales.SetActive(false);
 
         Debug.Log("Ambiente de pérdida activado.");
+    }
+
+    
+
+    public IEnumerator TransicionIntensidadLuz(float intensidadObjetivo)
+    {
+        float intensidadInicial = luzPrincipal.intensity;
+        float duracion = 1f / velocidadTransicion;
+        float tiempo = 0f;
+
+        while (tiempo < duracion)
+        {
+            tiempo += Time.deltaTime;
+            luzPrincipal.intensity = Mathf.Lerp(intensidadInicial, intensidadObjetivo, tiempo / duracion);
+            yield return null;
+        }
+
+        luzPrincipal.intensity = intensidadObjetivo;
     }
 }
