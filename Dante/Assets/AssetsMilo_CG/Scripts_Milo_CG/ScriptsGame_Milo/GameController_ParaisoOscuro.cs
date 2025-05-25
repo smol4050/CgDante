@@ -15,6 +15,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 {
     public GameState estadoActual = GameState.PreInicio;
     EnemyController_Paraiso enemigoController;
+    public CronometroSupervivencia CSupervivencia;
 
     public InteractionEsqueletos[] esqueletos;
     public PuertaFinalRoja1 puertaFinalRoja1;
@@ -69,7 +70,9 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public void EstadoJugandoTutorial()
     {
         estadoActual = GameState.JugandoTutorial;
+
         enemigoController.IniciarRutinaEnemigo1();
+        CSupervivencia.IniciarTemporizador();
         AudioEntorno.Play();
 
         Debug.Log("Estado: Jugando Tutorial");
@@ -78,6 +81,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public void EstadoJugando()
     {
         estadoActual = GameState.Jugando;
+        enemigoController.speedEnemy = 0.65f;
 
         foreach (var esqueleto in esqueletos)
         {
@@ -156,18 +160,18 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             puertasAbiertas++;
             CantidadPuertas.text = puertasAbiertas.ToString();
 
-            if (puertasAbiertas == puertasNecesarias2daParte && estadoActual == GameState.JugandoTutorial)
-            {
-                EstadoJugando();
-                Debug.Log("Estado: JugandoEsqueletos");
-            }
+            //if (puertasAbiertas == puertasNecesarias2daParte && estadoActual == GameState.JugandoTutorial)
+            //{
+            //    EstadoJugando();
+            //    Debug.Log("Estado: JugandoEsqueletos");
+            //}
 
-            if (puertasAbiertas == puertasNecesariasTerminar)
-            {
-                EstadoFinJuego();
-                gm.CompletarNivel();
-                Debug.Log("Estado: FinJuego");
-            }
+            //if (puertasAbiertas == puertasNecesariasTerminar)
+            //{
+            //    EstadoFinJuego();
+            //    gm.CompletarNivel();
+            //    Debug.Log("Estado: FinJuego");
+            //}
         }
     }
 

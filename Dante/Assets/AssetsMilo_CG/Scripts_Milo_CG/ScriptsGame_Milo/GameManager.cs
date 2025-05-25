@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,17 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            InicializarProgreso();
+
+            if (File.Exists(JsonGuardado.ObtenerRuta()))
+            {
+                CargarProgresoDesdeJson();
+                Debug.Log("Progreso cargado desde JSON.");
+            }
+            else
+            {
+                InicializarProgreso();
+                Debug.Log("Progreso inicializado.");
+            }
         }
         else
         {
@@ -29,7 +40,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void InicializarProgreso()
+    public void InicializarProgreso()
     {
         // Agrega aquí los nombres REALES de tus escenas
         progresoPorNivel.Add(new ProgresoNivel("Waen_CG"));
@@ -74,7 +85,22 @@ public class GameManager : MonoBehaviour
         {
             progreso.nivelCompletado = true;
             Debug.Log($"Nivel completado: {progreso.nombreNivel}");
+            GuardarProgresoEnJson(); // Guardamos el progreso justo cuando se completa el nivel
         }
+    }
+
+    public string ObtenerSiguienteNivelNoCompletado()
+    {
+        foreach (ProgresoNivel nivel in progresoPorNivel)
+        {
+            if (!nivel.nivelCompletado)
+            {
+                return nivel.nombreNivel;
+            }
+        }
+
+        Debug.Log("Todos los niveles están completados.");
+        return null; // Puedes devolver un nombre especial como "Creditos" si quieres
     }
 
     public void ReiniciarObjetosDelNivelActual()
@@ -87,6 +113,39 @@ public class GameManager : MonoBehaviour
     public void CambiarEscena(string nombreEscena)
     {
         SceneManager.LoadScene(nombreEscena);
+    }
+
+
+    public void GuardarProgresoEnJson()
+    {
+        DatosGuardados datos = new DatosGuardados();
+
+        foreach (ProgresoNivel prog in progresoPorNivel)
+        {
+            datos.progresoPorNivel.Add(new ProgresoNivelGuardado
+            {
+                nombreNivel = prog.nombreNivel,
+                objetosRecolectados = prog.objetosRecolectados,
+                nivelCompletado = prog.nivelCompletado
+            });
+        }
+
+        JsonGuardado.GuardarDatos(datos);
+    }
+
+    public void CargarProgresoDesdeJson()
+    {
+        DatosGuardados datos = JsonGuardado.CargarDatos();
+        progresoPorNivel.Clear();
+
+        foreach (ProgresoNivelGuardado prog in datos.progresoPorNivel)
+        {
+            progresoPorNivel.Add(new ProgresoNivel(prog.nombreNivel)
+            {
+                objetosRecolectados = prog.objetosRecolectados,
+                nivelCompletado = prog.nivelCompletado
+            });
+        }
     }
 }
     //public static GameManager Instance;

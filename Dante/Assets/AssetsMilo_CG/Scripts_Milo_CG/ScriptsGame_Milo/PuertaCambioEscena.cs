@@ -9,6 +9,8 @@ public class PuertaCambioEscena : MonoBehaviour, IInteractuable
     public string nombreEscena; // Nombre de la escena a la que quieres cambiar
     public void ActivarObjeto()
     {
+        GameManager.Instance.CompletarNivel();
         SceneManager.LoadScene(nombreEscena); // Asegúrate que el nombre esté bien escrito
+        
     }
 }
