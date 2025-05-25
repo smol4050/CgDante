@@ -95,7 +95,13 @@ public class GameManager : MonoBehaviour
         {
             if (!nivel.nivelCompletado)
             {
-                return nivel.nombreNivel;
+                string res = nivel.nombreNivel;
+                if (nivel.nombreNivel == "Waen_CG")
+                {
+                    res = "IntroVideo";
+
+                }
+                return res;
             }
         }
 
@@ -148,40 +154,40 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-    //public static GameManager Instance;
+//public static GameManager Instance;
 
-    //public int objetosRecolectados = 0;
-    //public int totalObjetos = 40;
+//public int objetosRecolectados = 0;
+//public int totalObjetos = 40;
 
-    //private void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject); // Persiste entre escenas
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+//private void Awake()
+//{
+//    if (Instance == null)
+//    {
+//        Instance = this;
+//        DontDestroyOnLoad(gameObject); // Persiste entre escenas
+//    }
+//    else
+//    {
+//        Destroy(gameObject);
+//    }
+//}
 
-    //public void SumarObjeto()
-    //{
-    //    objetosRecolectados++;
+//public void SumarObjeto()
+//{
+//    objetosRecolectados++;
 
-    //    Debug.Log($"Objetos recolectados: {objetosRecolectados}/{totalObjetos}");
+//    Debug.Log($"Objetos recolectados: {objetosRecolectados}/{totalObjetos}");
 
-    //    if (objetosRecolectados >= totalObjetos)
-    //    {
-    //        Debug.Log("¡Todos los objetos recolectados!");
-    //        // Activar puerta final o evento
-    //    }
-    //}
+//    if (objetosRecolectados >= totalObjetos)
+//    {
+//        Debug.Log("¡Todos los objetos recolectados!");
+//        // Activar puerta final o evento
+//    }
+//}
 
 
-    //public void CambiarEscena(string nombreEscena)
-    //{
-    //    UnityEngine.SceneManagement.SceneManager.LoadScene(nombreEscena);
-    //}
+//public void CambiarEscena(string nombreEscena)
+//{
+//    UnityEngine.SceneManagement.SceneManager.LoadScene(nombreEscena);
+//}
 //}

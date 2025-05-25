@@ -87,6 +87,8 @@ public class PausarReanudar : MonoBehaviour
         if (audioListener != null)
             audioListener.enabled = true;
 
+        menuPausa.SetActive(false);
+
         gm.ReiniciarObjetosDelNivelActual();
 
         SceneManager.LoadScene("Menu_CG");
