@@ -210,7 +210,7 @@ MonoBehaviour:
     m_Value: 0.383
   shapeFactor:
     m_OverrideState: 1
-    m_Value: 0.9
+    m_Value: 0.64
   shapeScale:
     m_OverrideState: 1
     m_Value: 5
@@ -219,7 +219,7 @@ MonoBehaviour:
     m_Value: {x: 0, y: 0, z: 0}
   erosionFactor:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.5
   erosionScale:
     m_OverrideState: 1
     m_Value: 107
@@ -239,7 +239,7 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value:
       mode: 0
-      customValue: 100000
+      customValue: 3000
       additiveValue: 0
       multiplyValue: 1
   orientation:
