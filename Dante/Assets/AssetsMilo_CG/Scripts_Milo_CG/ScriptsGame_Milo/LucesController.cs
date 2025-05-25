@@ -15,7 +15,7 @@ public class LucesController : MonoBehaviour
     [Header("Luces para ambiente de pérdida")]
     public GameObject lucesFinales;           // Luces nuevas tipo dramáticas
     public Light luzPrincipal;                // Directional Light
-    public float nuevaIntensidad = 0.2f;      // Intensidad bajada
+    public float nuevaIntensidad = 0.5f;      // Intensidad bajada
     public GameObject lucesIniciales;         // Luces que quieres apagar
 
     private Coroutine coroutineTitileo;

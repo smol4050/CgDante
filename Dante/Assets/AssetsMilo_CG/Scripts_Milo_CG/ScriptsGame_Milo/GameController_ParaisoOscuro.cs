@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum GameState
@@ -22,6 +23,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public GameObject puertaFinalRoja2;
     public AudioSource AudioEntorno;
     public LucesController lucesController;
+    public Light DirectionalLight;
 
     public TextMeshProUGUI CantidadPuertas;
     public TextMeshProUGUI textoPuntaje;
@@ -33,6 +35,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public int puertasNecesariasTerminar = 20;
 
     public PausarReanudar pausarReanudar;
+    public GameObject panelInfoInicio;
 
 
     private GameManager gm;
@@ -56,6 +59,9 @@ public class GameController_ParaisoOscuro : MonoBehaviour
         // Actualiza el contador de UI desde GameManager
         int recolectados = gm.ObtenerObjetosRecolectados();
         textoPuntaje.text = recolectados.ToString();
+
+        StartCoroutine(InicioDiapositivasTutorial());
+        
     }
 
     private void OnDestroy()
@@ -65,6 +71,19 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             //Siempre desuscribirse para evitar memory leaks
             gm.OnObjetoRecolectado -= ObjetoRecolectado;
         }
+    }
+
+    IEnumerator InicioDiapositivasTutorial() {
+
+        yield return new WaitForSeconds(2f);
+
+        Time.timeScale = 0f;
+        panelInfoInicio.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        PlayerController.Instance.canMove = false;
+
     }
 
     public void EstadoJugandoTutorial()
@@ -82,6 +101,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     {
         estadoActual = GameState.Jugando;
         enemigoController.speedEnemy = 0.65f;
+        DirectionalLight.intensity = 6f;
 
         foreach (var esqueleto in esqueletos)
         {
@@ -120,7 +140,7 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public void EstadoGameOver()
     {
         estadoActual = GameState.GameOver;
-        //enemigoController.DetenerRutinaEnemigo1();
+        enemigoController.DetenerRutinaEnemigo1();
         foreach (var esqueleto in esqueletos)
         {
             if (esqueleto != null)
@@ -160,18 +180,6 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             puertasAbiertas++;
             CantidadPuertas.text = puertasAbiertas.ToString();
 
-            //if (puertasAbiertas == puertasNecesarias2daParte && estadoActual == GameState.JugandoTutorial)
-            //{
-            //    EstadoJugando();
-            //    Debug.Log("Estado: JugandoEsqueletos");
-            //}
-
-            //if (puertasAbiertas == puertasNecesariasTerminar)
-            //{
-            //    EstadoFinJuego();
-            //    gm.CompletarNivel();
-            //    Debug.Log("Estado: FinJuego");
-            //}
         }
     }
 
@@ -190,5 +198,15 @@ public class GameController_ParaisoOscuro : MonoBehaviour
                 // Activar algún evento especial si aplica
             }
         }
+    }
+
+    public void ReanudarInfoInicio()
+    {
+        Time.timeScale = 1f;
+
+        panelInfoInicio.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        PlayerController.Instance.canMove = true;
     }
 }
