@@ -16895,7 +16895,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 21.872957, y: -2.19, z: -34.1}
-  m_LocalScale: {x: 61.41383, y: 1, z: 19.423}
+  m_LocalScale: {x: 67.37711, y: 1, z: 34.4654}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -16912,6 +16912,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e456b35a49343e74ca95c0cbd9322b75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pathManagers:
+  - {fileID: 1370809210}
+  - {fileID: 2029686664}
+  - {fileID: 1751188832}
 --- !u!1 &1031310375
 GameObject:
   m_ObjectHideFlags: 0
@@ -31161,7 +31165,7 @@ PrefabInstance:
     - target: {fileID: 7028725173690413322, guid: 71edc6face8ff5f44b41769755be99cd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.22
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7028725173690413322, guid: 71edc6face8ff5f44b41769755be99cd,
         type: 3}
@@ -31615,7 +31619,6 @@ SceneRoots:
   - {fileID: 1434188340}
   - {fileID: 1754787009}
   - {fileID: 21685191}
-  - {fileID: 1370809211}
   - {fileID: 2029686665}
   - {fileID: 1751188833}
   - {fileID: 502562488}
@@ -31629,4 +31632,5 @@ SceneRoots:
   - {fileID: 793400540}
   - {fileID: 1710465570}
   - {fileID: 286795502}
+  - {fileID: 1370809211}
   - {fileID: 1025507106}

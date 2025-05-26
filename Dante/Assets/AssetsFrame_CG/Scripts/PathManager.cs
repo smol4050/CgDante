@@ -77,13 +77,9 @@ public class PathManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         state = State.WaitingForButton;
-
         // Asegura que FPS esté activa y secuencia apagada
         if (sequenceCamera != null) sequenceCamera.gameObject.SetActive(false);
         if (fpsCamera != null) fpsCamera.gameObject.SetActive(true);
-
-        // Desactivar movimiento
-        if (playerMovement != null) playerMovement.enabled = false;
 
         // Reset visual y triggers
         foreach (var path in caminos)
