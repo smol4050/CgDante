@@ -9,6 +9,8 @@ TagManager:
   - Objetivo
   - Puerta
   - Linterna
+  - RechargeButton
+  - ReturnTrigger
   layers:
   - Default
   - TransparentFX
