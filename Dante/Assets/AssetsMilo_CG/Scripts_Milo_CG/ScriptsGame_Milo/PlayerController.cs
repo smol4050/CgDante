@@ -2,12 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Controla el movimiento del jugador incluyendo caminar, correr, agacharse,
+/// mirar con el mouse, salto, gravedad y efecto de movimiento de cámara (head bobbing).
+/// Implementa un singleton para acceso global y controla la interacción con objetos.
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
+    /// <summary>
+    /// Instancia singleton para acceso global.
+    /// </summary>
     public static PlayerController Instance { get; private set; }
 
     private CharacterController _player;
+
+    /// <summary>
+    /// Transform que contiene la cámara para control de rotación vertical y efectos visuales.
+    /// </summary>
     [SerializeField] private Transform _cameraHolder;
+
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _runSpeed = 10f;
     [SerializeField] private float _actualSpeed;
@@ -16,7 +29,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpHeight = 2f;
     [SerializeField] private float _mouseSensitivity = 2f;
 
-    [HideInInspector] public bool canMove = false; // ← Nueva bandera
+    /// <summary>
+    /// Controla si el jugador puede moverse o no (por ejemplo, en pausa o menus).
+    /// </summary>
+    [HideInInspector] public bool canMove = false;
 
     private bool isRunning;
 
@@ -36,11 +52,17 @@ public class PlayerController : MonoBehaviour
     private float defaultCamY;
     private float bobTimer = 0f;
 
-    public void  Start()
+    /// <summary>
+    /// Inicializa la bandera para permitir movimiento.
+    /// </summary>
+    public void Start()
     {
         canMove = true;
     }
 
+    /// <summary>
+    /// Método Awake para inicialización de singleton, componentes y estado inicial del cursor y cámara.
+    /// </summary>
     private void Awake()
     {
         Instance = this; // Singleton para acceso estático
@@ -50,31 +72,33 @@ public class PlayerController : MonoBehaviour
         defaultCamY = _originalCameraLocalPos.y + (_isCrouching ? _crouchCameraOffset : 0f);
     }
 
+    /// <summary>
+    /// Actualiza cada frame la lógica de movimiento, cámara e interacción si el jugador puede moverse.
+    /// </summary>
     private void Update()
     {
         if (!canMove) return;
 
         HandleMouseLook();
         HandleCrouch();
-
-        // Solo manejamos movimiento si está permitido
-        //if (canMove)
-         HandleMovement();
+        HandleMovement();
         CheckForInteractable();
     }
 
+    /// <summary>
+    /// Detecta objetos interactuables frente a la cámara y activa interacción con la tecla E.
+    /// </summary>
     private void CheckForInteractable()
     {
+        Ray ray = new Ray(_cameraHolder.position, _cameraHolder.forward);
+        RaycastHit hit;
 
-       Ray ray = new Ray(_cameraHolder.position, _cameraHolder.forward);
-       RaycastHit hit;
-
-       if (Physics.Raycast(ray, out hit, 3f, LayerMask.GetMask("RaycastDetect")))
-       {
-           if (Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(ray, out hit, 3f, LayerMask.GetMask("RaycastDetect")))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
             {
-               IInteractuable interactuable = hit.collider.GetComponent<IInteractuable>();
-               if (interactuable != null)
+                IInteractuable interactuable = hit.collider.GetComponent<IInteractuable>();
+                if (interactuable != null)
                 {
                     interactuable.ActivarObjeto();
                 }
@@ -82,6 +106,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Controla el movimiento horizontal y vertical, velocidad (caminar/correr), gravedad y salto.
+    /// </summary>
     private void HandleMovement()
     {
         float moveX = Input.GetAxis("Horizontal");
@@ -96,15 +123,20 @@ public class PlayerController : MonoBehaviour
         _moveDirection.z = move.z * _actualSpeed;
 
         ApplyGravity();
+
         _player.Move(_moveDirection * Time.deltaTime);
+
         HandleHeadBobbing();
     }
 
+    /// <summary>
+    /// Aplica la gravedad y permite saltar si el jugador está en el suelo.
+    /// </summary>
     private void ApplyGravity()
     {
         if (_player.isGrounded)
         {
-            _fallVelocity = -1f;
+            _fallVelocity = -1f; // Pequeña fuerza hacia abajo para mantener contacto con el suelo
             if (Input.GetButtonDown("Jump"))
                 _fallVelocity = Mathf.Sqrt(2f * _jumpHeight * _gravity);
         }
@@ -116,6 +148,9 @@ public class PlayerController : MonoBehaviour
         _moveDirection.y = _fallVelocity;
     }
 
+    /// <summary>
+    /// Controla la rotación de la cámara y jugador con el movimiento del mouse.
+    /// </summary>
     private void HandleMouseLook()
     {
         float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
@@ -128,6 +163,9 @@ public class PlayerController : MonoBehaviour
         _cameraHolder.localEulerAngles = new Vector3(_verticalLookRotation, 0, 0);
     }
 
+    /// <summary>
+    /// Controla el agacharse, cambia altura del CharacterController y la cámara, ajusta velocidad al agacharse.
+    /// </summary>
     private void HandleCrouch()
     {
         if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -145,6 +183,9 @@ public class PlayerController : MonoBehaviour
         _cameraHolder.localPosition = Vector3.Lerp(_cameraHolder.localPosition, targetCameraPos, Time.deltaTime * 10f);
     }
 
+    /// <summary>
+    /// Añade un efecto de movimiento vertical oscilante (head bobbing) al caminar o correr.
+    /// </summary>
     private void HandleHeadBobbing()
     {
         if (_player.isGrounded && (_moveDirection.x != 0 || _moveDirection.z != 0))

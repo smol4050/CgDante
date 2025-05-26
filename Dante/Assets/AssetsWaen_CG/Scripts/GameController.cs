@@ -12,7 +12,8 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Instancia única del GameController (patrón Singleton).
     /// </summary>
-    public static GameController Instance;
+    /// 
+    //public static GameController Instance;
 
     private GameManager gm;
 
@@ -82,18 +83,18 @@ public class GameController : MonoBehaviour
     /// <summary>
     /// Inicializa la instancia del GameController y asegura que sea única.
     /// </summary>
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 
     /// <summary>
     /// Inicializa referencias y el estado inicial del juego.

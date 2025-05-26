@@ -29,6 +29,8 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
     /// </summary>
     public GameObject panelMision;
 
+    GameController gameController;
+
     /// <summary>
     /// Duración del efecto de desvanecimiento (fade) entre los paneles.
     /// </summary>
@@ -42,6 +44,7 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
     /// </summary>
     void Start()
     {
+        gameController = FindObjectOfType<GameController>();
         foreach (var texto in textosOrdenados)
         {
             texto.gameObject.SetActive(false);
@@ -95,10 +98,10 @@ public class MostrarTextoSecuencia1 : MonoBehaviour
         }
 
         // Notifica al GameController solo una vez
-        if (!introTerminada && GameController.Instance != null)
+        if (!introTerminada && gameController != null)
         {
             introTerminada = true;
-            GameController.Instance.IniciarSecuenciaDesdeIntro();
+            gameController.IniciarSecuenciaDesdeIntro();
         }
     }
 

@@ -3,21 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// Controla la aparición y comportamiento del enemigo en el nivel "Paraíso Oscuro",
+/// incluyendo su posición aleatoria, sonidos de aparición y lógica de pérdida.
+/// </summary>
 public class EnemyController_Paraiso : MonoBehaviour
 {
     private GameController_ParaisoOscuro gameC;
-    public GameObject[] puntosDeAparicion; // Asigna aquí tus 4 esferas
-    public float tiempoParaReaccionar = 15f;
-    public float speedEnemy = 1f; // Velocidad del enemigo
-    public AudioSource audioSource;
-    public AudioClip[] sonidosPuerta; // Un sonido distinto por puerta
 
-    private bool jugadorPerdio = false; 
+    /// <summary>
+    /// Puntos donde puede aparecer el enemigo. Se asignan desde el Inspector.
+    /// </summary>
+    public GameObject[] puntosDeAparicion;
+
+    /// <summary>
+    /// Tiempo en segundos que el jugador tiene para reaccionar antes de perder.
+    /// </summary>
+    public float tiempoParaReaccionar = 15f;
+
+    /// <summary>
+    /// Velocidad del enemigo. Se puede usar para aumentar la dificultad.
+    /// </summary>
+    public float speedEnemy = 1f;
+
+    /// <summary>
+    /// Componente de audio del enemigo.
+    /// </summary>
+    public AudioSource audioSource;
+
+    /// <summary>
+    /// Clips de sonido asociados a cada puerta. Se reproducen cuando el enemigo aparece.
+    /// </summary>
+    public AudioClip[] sonidosPuerta;
+
+    private bool jugadorPerdio = false;
     private int indiceActual = -1;
     private Coroutine rutinaEnemigo;
 
+    /// <summary>
+    /// Indica si el jugador ha perdido.
+    /// </summary>
     public bool JugadorPerdio { get => jugadorPerdio; set => jugadorPerdio = value; }
 
+    /// <summary>
+    /// Inicializa el controlador, desactiva esferas de aparición y encuentra el controlador del juego.
+    /// </summary>
     void Start()
     {
         for (int i = 0; i < puntosDeAparicion.Length; i++)
@@ -28,13 +58,18 @@ public class EnemyController_Paraiso : MonoBehaviour
         gameC = FindObjectOfType<GameController_ParaisoOscuro>();
     }
 
+    /// <summary>
+    /// Inicia la rutina del enemigo que aparece en puntos aleatorios.
+    /// </summary>
     public void IniciarRutinaEnemigo1()
     {
         rutinaEnemigo = StartCoroutine(AparicionEnemigoPuertas());
         Debug.Log("Iniciando rutina enemigo 1");
     }
 
-
+    /// <summary>
+    /// Detiene la rutina actual del enemigo si está en ejecución.
+    /// </summary>
     public void DetenerRutinaEnemigo1()
     {
         if (rutinaEnemigo != null)
@@ -42,6 +77,11 @@ public class EnemyController_Paraiso : MonoBehaviour
         Debug.Log("Deteniendo rutina enemigo 1");
     }
 
+    /// <summary>
+    /// Corrutina que controla la aparición del enemigo, la lógica de detección de la puerta cerrada
+    /// y el resultado (seguir o perder).
+    /// </summary>
+    /// <returns>IEnumerator para la corrutina de aparición.</returns>
     IEnumerator AparicionEnemigoPuertas()
     {
         while (!jugadorPerdio)
@@ -58,7 +98,7 @@ public class EnemyController_Paraiso : MonoBehaviour
             puntosDeAparicion[indiceActual].SetActive(true); // Activar la nueva esfera
             transform.position = punto.position;
 
-            // Sonido
+            // Sonido de puerta si hay clip asignado
             if (audioSource && sonidosPuerta.Length > indiceActual)
                 AudioSource.PlayClipAtPoint(sonidosPuerta[indiceActual], punto.position);
 
@@ -66,29 +106,25 @@ public class EnemyController_Paraiso : MonoBehaviour
 
             // Esperar por reacción del jugador
             float tiempo = 0f;
-            while (tiempo < tiempoParaReaccionar*speedEnemy)
+            while (tiempo < tiempoParaReaccionar * speedEnemy)
             {
                 if (InteractionDoors.EstadoPuertas[indiceActual] == false)
                 {
                     Debug.Log("Puerta cerrada " + indiceActual + " a tiempo.");
-                    if(gameC != null) gameC.PuertaCerradaCorrectamente();
-                    
-                    break; // No necesitas desactivar aquí, ya se desactivan al inicio del loop
-
-                    
+                    if (gameC != null) gameC.PuertaCerradaCorrectamente();
+                    break;
                 }
 
                 tiempo += Time.deltaTime;
                 yield return null;
             }
 
+            // Si no se cerró la puerta a tiempo
             if (InteractionDoors.EstadoPuertas[indiceActual] == true)
             {
                 jugadorPerdio = true;
                 gameC.EstadoGameOver();
                 Debug.Log("¡PERDISTE!");
-                //FindObjectOfType<PausarReanudar>().MostrarGameOver();
-                // Puedes llamar aquí a GameOver
                 break;
             }
 

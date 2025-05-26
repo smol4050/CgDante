@@ -3,23 +3,55 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Controla un cronómetro de supervivencia que cuenta regresivamente desde un tiempo inicial.
+/// Al llegar a ciertos umbrales de tiempo, activa eventos como cambio de dificultad o fin de nivel.
+/// </summary>
 public class CronometroSupervivencia : MonoBehaviour
 {
-    public float tiempoTotal = 120f; // 5 minutos en segundos
+    /// <summary>
+    /// Tiempo total del cronómetro en segundos.
+    /// </summary>
+    public float tiempoTotal = 120f; // 2 minutos
+
+    /// <summary>
+    /// Tiempo restante actual del cronómetro.
+    /// </summary>
     private float tiempoRestante;
 
-    public TextMeshProUGUI textoTiempo; // Asignar en el Inspector
+    /// <summary>
+    /// Texto en pantalla que muestra el tiempo restante (debe asignarse en el Inspector).
+    /// </summary>
+    public TextMeshProUGUI textoTiempo;
+
+    /// <summary>
+    /// Indica si el cronómetro está activo.
+    /// </summary>
     private bool enEjecucion = false;
+
+    /// <summary>
+    /// Controla si ya se realizó el cambio de dificultad.
+    /// </summary>
     private bool cambioDificultadHecho = false;
 
+    /// <summary>
+    /// Referencia al controlador principal del nivel.
+    /// </summary>
     GameController_ParaisoOscuro GameC;
 
+    /// <summary>
+    /// Inicializa las variables y obtiene referencias necesarias al iniciar el componente.
+    /// </summary>
     void Start()
     {
         tiempoRestante = tiempoTotal;
         GameC = FindObjectOfType<GameController_ParaisoOscuro>();
     }
 
+    /// <summary>
+    /// Actualiza el cronómetro cada frame si está en ejecución.
+    /// Cambia la dificultad a mitad del tiempo y ejecuta el final del nivel si el tiempo se agota.
+    /// </summary>
     void Update()
     {
         if (!enEjecucion) return;
@@ -31,14 +63,14 @@ public class CronometroSupervivencia : MonoBehaviour
         int segundos = Mathf.FloorToInt(tiempoRestante % 60);
         textoTiempo.text = $"{minutos:00}:{segundos:00}";
 
-        // Cambiar dificultad cuando llegue a 2:30
+        // Cambiar dificultad al llegar a los 90 segundos
         if (!cambioDificultadHecho && tiempoRestante <= 90f)
         {
             cambioDificultadHecho = true;
             ActivarModoDificil();
         }
 
-        // Si el tiempo se acaba
+        // Finalizar nivel si el tiempo se agota
         if (tiempoRestante <= 0)
         {
             enEjecucion = false;
@@ -46,24 +78,30 @@ public class CronometroSupervivencia : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Inicia el temporizador y permite que comience a descontar tiempo.
+    /// </summary>
     public void IniciarTemporizador()
     {
         enEjecucion = true;
         Debug.Log("Temporizador iniciado.");
     }
 
+    /// <summary>
+    /// Activa el modo difícil, lo cual puede modificar el estado del juego.
+    /// </summary>
     void ActivarModoDificil()
     {
         Debug.Log("¡Modo difícil activado!");
 
         GameC.EstadoJugando();
         Debug.Log("Estado: JugandoEsqueletos");
-        // Aquí puedes cambiar música, efectos, enemigos, etc.
-        // Por ejemplo:
-        // enemigo.SetVelocidad(2f);
-        // GameManager.Instance.SetModo("jugando");
+        // Aquí se podrían modificar aspectos como música, enemigos, etc.
     }
 
+    /// <summary>
+    /// Llama al final del juego exitosamente y marca el nivel como completado.
+    /// </summary>
     void FinDelNivel()
     {
         Debug.Log("¡Sobreviviste!");
@@ -71,6 +109,6 @@ public class CronometroSupervivencia : MonoBehaviour
         GameManager.Instance.CompletarNivel();
         Debug.Log("Estado: FinJuego");
 
-        // Puedes mostrar UI de victoria o cambiar de escena
+        // Aquí se puede mostrar una UI de victoria o pasar a otra escena.
     }
 }
