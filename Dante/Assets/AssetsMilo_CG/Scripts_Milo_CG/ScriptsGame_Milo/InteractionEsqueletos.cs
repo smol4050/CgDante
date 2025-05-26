@@ -41,6 +41,17 @@ public class InteractionEsqueletos : MonoBehaviour, IInteractuable
         rutinaAparicion = StartCoroutine(AparicionAleatoria());
     }
 
+    public void DetenerEnemigoEsqueletos()
+    {
+        if (rutinaAparicion != null)
+        {
+            StopCoroutine(rutinaAparicion);
+            rutinaAparicion = null;
+        }
+
+        DesactivarVisual(); // en lugar de apagar todo el GameObject
+    }
+
     IEnumerator AparicionAleatoria()
     {
         while (true)
@@ -66,17 +77,6 @@ public class InteractionEsqueletos : MonoBehaviour, IInteractuable
         SuCollider.enabled = false;
         if (audioSource.isPlaying)
             audioSource.Stop();
-    }
-
-    public void DesactivarEsqueletos()
-    {
-        if (rutinaAparicion != null)
-        {
-            StopCoroutine(rutinaAparicion);
-            rutinaAparicion = null;
-        }
-
-        DesactivarVisual(); // en lugar de apagar todo el GameObject
     }
 
     public void ActivarObjeto()

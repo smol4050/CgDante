@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public enum GameState
 {
@@ -36,6 +38,10 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 
     public PausarReanudar pausarReanudar;
     public GameObject panelInfoInicio;
+
+    public Transform aguaTransform;
+    public float alturaFinal = 7f;
+    public float velocidadSubida = 1f;
 
 
     private GameManager gm;
@@ -101,7 +107,10 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     {
         estadoActual = GameState.Jugando;
         enemigoController.speedEnemy = 0.65f;
-        DirectionalLight.intensity = 6f;
+
+        // Transición suave a luz más baja
+        if (lucesController.transicionLuzActual != null) StopCoroutine(lucesController.transicionLuzActual);
+        lucesController.transicionLuzActual = StartCoroutine(lucesController.TransicionIntensidadLuz(6f));
 
         foreach (var esqueleto in esqueletos)
         {
@@ -121,10 +130,14 @@ public class GameController_ParaisoOscuro : MonoBehaviour
 
         enemigoController.DetenerRutinaEnemigo1();
 
+        // Transición a luz intensa
+        if (lucesController.transicionLuzActual != null) StopCoroutine(lucesController.transicionLuzActual);
+        lucesController.transicionLuzActual = StartCoroutine(lucesController.TransicionIntensidadLuz(100f));
+
         foreach (var esqueleto in esqueletos)
         {
             if (esqueleto != null)
-                esqueleto.DesactivarEsqueletos();
+                esqueleto.DetenerEnemigoEsqueletos();
             else
                 Debug.LogWarning("Un esqueleto no se pudo apagar");
         }
@@ -134,6 +147,8 @@ public class GameController_ParaisoOscuro : MonoBehaviour
         puertaFinalRoja2.SetActive(true);
         AudioEntorno.Stop();
 
+        StartCoroutine(SubirAgua());
+
         Debug.Log("Estado: FinJuego");
     }
 
@@ -141,6 +156,15 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     {
         estadoActual = GameState.GameOver;
         enemigoController.DetenerRutinaEnemigo1();
+
+        foreach (var esqueleto in esqueletos)
+        {
+            if (esqueleto != null)
+                esqueleto.DetenerEnemigoEsqueletos();
+            else
+                Debug.LogWarning("Logica Esqueletos Desactivada");
+        }
+
         foreach (var esqueleto in esqueletos)
         {
             if (esqueleto != null)
@@ -172,6 +196,22 @@ public class GameController_ParaisoOscuro : MonoBehaviour
         pausarReanudar.MostrarGameOver();
     }
 
+    IEnumerator SubirAgua()
+    {
+        float t = 0f;
+        Vector3 posicionInicial = aguaTransform.position;
+        Vector3 posicionFinal = new Vector3(posicionInicial.x, alturaFinal, posicionInicial.z);
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime * velocidadSubida;
+            aguaTransform.position = Vector3.Lerp(posicionInicial, posicionFinal, t);
+            yield return null;
+        }
+
+        aguaTransform.position = posicionFinal; // Asegura que termine exacto
+    }
+
 
     public void PuertaCerradaCorrectamente()
     {
@@ -199,6 +239,8 @@ public class GameController_ParaisoOscuro : MonoBehaviour
             }
         }
     }
+
+    
 
     public void ReanudarInfoInicio()
     {

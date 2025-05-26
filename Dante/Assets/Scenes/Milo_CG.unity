@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5901595, g: 0.26646712, b: 0.079895206, a: 1}
+  m_IndirectSpecularColor: {r: 0.5060001, g: 0.18550922, b: 0.05787433, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6126,7 +6126,22 @@ PrefabInstance:
     - target: {fileID: 934680253864951789, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.14544417
+      value: 0.08092514
+      objectReference: {fileID: 0}
+    - target: {fileID: 934680253864951789, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 934680253864951789, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.509
+      objectReference: {fileID: 0}
+    - target: {fileID: 934680253864951789, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.211
       objectReference: {fileID: 0}
     - target: {fileID: 1026807804927412581, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -6140,18 +6155,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6313016329050360943, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
+      propertyPath: m_Size.y
+      value: 1.8866874
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313016329050360943, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
       propertyPath: m_Size.z
-      value: 1.0793068
+      value: 1.3125513
       objectReference: {fileID: 0}
     - target: {fileID: 6313016329050360943, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: m_Center.x
-      value: -9.5857586e-11
+      value: -4.840262e-10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6313016329050360943, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.09163333
       objectReference: {fileID: 0}
     - target: {fileID: 6313016329050360943, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       propertyPath: m_Center.z
-      value: 0.039653562
+      value: 0.15627588
       objectReference: {fileID: 0}
     - target: {fileID: 6671396119849816385, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -13230,6 +13255,9 @@ MonoBehaviour:
   puertasNecesariasTerminar: 16
   pausarReanudar: {fileID: 1154976471}
   panelInfoInicio: {fileID: 1214023132}
+  aguaTransform: {fileID: 1442225710}
+  alturaFinal: 10
+  velocidadSubida: 1
 --- !u!4 &1154976470
 Transform:
   m_ObjectHideFlags: 0
@@ -16938,8 +16966,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 2.29
-  MaxDistance: 44.32
+  MinDistance: 2.0226471
+  MaxDistance: 79.91388
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -17028,9 +17056,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canales:
   - {fileID: 8300000, guid: 37e382718f9d0244f95ba0d68b76c03b, type: 3}
-  - {fileID: 8300000, guid: e29918df80282204cb6b77e43de9dac3, type: 3}
   - {fileID: 8300000, guid: 0511851c9eb00a64aa213660e289f3b9, type: 3}
   - {fileID: 8300000, guid: 47d03d3950fcb554c92c30764b74cd34, type: 3}
+  - {fileID: 8300000, guid: e29918df80282204cb6b77e43de9dac3, type: 3}
   cambioCanal: {fileID: 8300000, guid: 54476f7b07feb454e9206fa894ac1fcf, type: 3}
 --- !u!65 &1678439101
 BoxCollider:
@@ -24077,7 +24105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 30
+  m_Intensity: 70
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -24222,7 +24250,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 30
+  m_Intensity: 70
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -25754,6 +25782,7 @@ MonoBehaviour:
   luzPrincipal: {fileID: 1882710392}
   nuevaIntensidad: 0.5
   lucesIniciales: {fileID: 726782517}
+  velocidadTransicion: 1
 --- !u!4 &1979997048
 Transform:
   m_ObjectHideFlags: 0

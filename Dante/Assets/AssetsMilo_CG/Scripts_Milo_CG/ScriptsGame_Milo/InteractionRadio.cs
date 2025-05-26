@@ -68,6 +68,8 @@ public class InteractionRadio : MonoBehaviour, IInteractuable
 
         if (gameController.estadoActual == GameState.JugandoTutorial && !cambiadoPorTutorial)
         {
+            fxSource.PlayOneShot(cambioCanal, 0.7f);
+
             fuentes[canalActual].volume = 0f;
             canalActual = 1;
             fuentes[canalActual].volume = 0.25f;
