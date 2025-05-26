@@ -12,7 +12,7 @@ public class RecolectorCorazones : MonoBehaviour
     /// <summary>
     /// Instancia única del singleton.
     /// </summary>
-    public static RecolectorCorazones Instance;
+    //public static RecolectorCorazones Instance;
 
     /// <summary>
     /// Número de corazones restantes por recolectar.
@@ -37,13 +37,13 @@ public class RecolectorCorazones : MonoBehaviour
     /// <summary>
     /// Inicializa la instancia singleton o destruye duplicados.
     /// </summary>
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    //private void Awake()
+    //{
+    //    if (Instance == null)
+    //        Instance = this;
+    //    else
+    //        Destroy(gameObject);
+    //}
 
     /// <summary>
     /// Inicializa la cantidad de corazones y actualiza la interfaz.

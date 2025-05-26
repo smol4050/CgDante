@@ -7,6 +7,9 @@ using UnityEngine;
 /// </summary>
 public class Recolectable : MonoBehaviour, IInteractuable
 {
+
+    GameController gameController;
+
     /// <summary>
     /// Indica si el objeto ya ha sido recogido.
     /// </summary>
@@ -46,6 +49,7 @@ public class Recolectable : MonoBehaviour, IInteractuable
     private void Start()
     {
         _mainCamera = Camera.main.transform;
+        gameController = FindObjectOfType<GameController>();
     }
 
     /// <summary>
@@ -72,7 +76,7 @@ public class Recolectable : MonoBehaviour, IInteractuable
     /// <returns>Un <see cref="IEnumerator"/> para controlar la corrutina.</returns>
     private IEnumerator ExaminarYRecolectar()
     {
-        GameController.Instance.ReproducirSonidoCorazon();
+        gameController.ReproducirSonidoCorazon();
 
         float elapsedTime = 0f;
         Vector3 targetPosition = _mainCamera.position + _mainCamera.forward * 0.5f;
@@ -89,7 +93,7 @@ public class Recolectable : MonoBehaviour, IInteractuable
             yield return null;
         }
 
-        GameController.Instance.RecolectarCorazon();
+        gameController.RecolectarCorazon();
         _isCollected = true;
         Destroy(gameObject);
     }
