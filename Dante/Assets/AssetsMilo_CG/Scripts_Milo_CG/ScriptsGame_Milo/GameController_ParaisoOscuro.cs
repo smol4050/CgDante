@@ -40,8 +40,8 @@ public class GameController_ParaisoOscuro : MonoBehaviour
     public GameObject panelInfoInicio;
 
     public Transform aguaTransform;
-    public float alturaFinal = 7f;
-    public float velocidadSubida = 1f;
+    public float alturaFinal = 6.5f;
+    public float velocidadSubida = 0.05f;
 
 
     private GameManager gm;
