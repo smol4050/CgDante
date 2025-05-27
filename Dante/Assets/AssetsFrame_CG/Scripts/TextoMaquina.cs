@@ -2,63 +2,75 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Muestra una serie de párrafos en un panel UI con
+/// efecto de máquina de escribir y sonido de tecleo.
+/// </summary>
 public class TextoMaquina : MonoBehaviour
 {
     [Header("UI References")]
-    public TextMeshProUGUI dialogoText;    // Tu TMP Text
-    public GameObject dialogPanel;         // Panel que agrupa el texto
+    /// <summary>Campo de texto TMP donde se escribe el diálogo.</summary>
+    public TextMeshProUGUI dialogoText;
+    /// <summary>Panel que agrupa el texto y controles.</summary>
+    public GameObject dialogPanel;
 
     [Header("Contenido")]
+    /// <summary>Array de párrafos que se mostrarán en secuencia.</summary>
     [TextArea(3, 10)]
-    public string[] parrafos;              // Los párrafos a mostrar
+    public string[] parrafos;
 
     [Header("Configuración")]
+    /// <summary>Retraso en segundos entre cada carácter.</summary>
     public float velocidadEscritura = 0.03f;
 
     [Header("Audio")]
-    public AudioClip typingClip;           // Sonido de tecleo
-    private AudioSource audioSource;       // “altavoz” para el typingClip
+    /// <summary>Clip de audio que suena al teclear.</summary>
+    public AudioClip typingClip;
+    private AudioSource audioSource;
 
     private int index = 0;
     private bool escribiendo = false;
     private Coroutine typingCoroutine;
 
+    /// <summary>
+    /// Inicializa componentes y comienza con el primer párrafo.
+    /// </summary>
     void Start()
     {
-        // Componentes
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             Debug.LogError("Añade un AudioSource al mismo GameObject de TextoMaquina.");
 
-        // Validación básica
         if (dialogoText == null || dialogPanel == null || parrafos.Length == 0)
         {
             Debug.LogError("Falta asignar referencias o array de párrafos vacío.");
             return;
         }
 
-        // Preparar UI
         dialogPanel.SetActive(true);
         index = 0;
         ShowParagraph();
     }
 
+    /// <summary>
+    /// Controla la tecla F para avanzar el diálogo cuando no está escribiendo.
+    /// </summary>
     void Update()
     {
-        // Avanzar al presionar F
         if (!escribiendo && dialogPanel.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
             ContinueText();
         }
     }
 
-    void ShowParagraph()
+    /// <summary>
+    /// Inicia la escritura del párrafo actual con sonido y efecto.
+    /// </summary>
+    private void ShowParagraph()
     {
-        // Detener cualquier tecleo anterior
         if (typingCoroutine != null)
             StopCoroutine(typingCoroutine);
 
-        // Arrancar sonido en bucle
         if (typingClip != null && audioSource != null)
         {
             audioSource.clip = typingClip;
@@ -66,12 +78,15 @@ public class TextoMaquina : MonoBehaviour
             audioSource.Play();
         }
 
-        // Iniciar escritura
         dialogoText.text = "";
         typingCoroutine = StartCoroutine(TypeParagraph(parrafos[index]));
     }
 
-    IEnumerator TypeParagraph(string texto)
+    /// <summary>
+    /// Corrutina que escribe carácter a carácter con retardo.
+    /// </summary>
+    /// <param name="texto">El párrafo completo a mostrar.</param>
+    private IEnumerator TypeParagraph(string texto)
     {
         escribiendo = true;
         dialogoText.text = "";
@@ -81,14 +96,15 @@ public class TextoMaquina : MonoBehaviour
             yield return new WaitForSeconds(velocidadEscritura);
         }
         escribiendo = false;
-
-        // Al terminar de escribir, detén el sonido
         if (audioSource != null) audioSource.Stop();
     }
 
-    void ContinueText()
+    /// <summary>
+    /// Avanza al siguiente párrafo o cierra el panel si ya no hay más.
+    /// </summary>
+    private void ContinueText()
     {
-        // Si aún se teclea, completa de golpe y detén sonido
+        // Si aún se teclea, mostramos el texto completo
         if (escribiendo)
         {
             StopCoroutine(typingCoroutine);
@@ -98,7 +114,6 @@ public class TextoMaquina : MonoBehaviour
             return;
         }
 
-        // Pasar al siguiente párrafo
         index++;
         if (index < parrafos.Length)
         {
@@ -106,7 +121,6 @@ public class TextoMaquina : MonoBehaviour
         }
         else
         {
-            // Acabó todo: ocultar panel
             dialogPanel.SetActive(false);
         }
     }

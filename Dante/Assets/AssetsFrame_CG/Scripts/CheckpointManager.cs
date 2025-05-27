@@ -2,8 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Singleton que gestiona la posición de respawn del jugador mediante checkpoints.
+/// Persiste entre escenas gracias a <see cref="DontDestroyOnLoad"/>.
+/// </summary>
 public class CheckpointManager : MonoBehaviour
 {
+    /// <summary>
+    /// Instancia global única de <see cref="CheckpointManager"/>.
+    /// </summary>
     public static CheckpointManager Instance { get; private set; }
 
     private Vector3 lastCheckpointPos;
@@ -16,7 +23,7 @@ public class CheckpointManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // Opcional: si quieres que el jugador empiece en la posición inicial de escena
+            // Opcional: al cargar la escena, tomar la posición inicial del jugador
             var player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
@@ -31,8 +38,11 @@ public class CheckpointManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Llamar desde cada Checkpoint cuando el jugador lo active.
+    /// Actualiza el punto de respawn al transform del checkpoint.
     /// </summary>
+    /// <param name="checkpointTransform">
+    /// Transform del objeto checkpoint que ha sido activado.
+    /// </param>
     public void SetCheckpoint(Transform checkpointTransform)
     {
         lastCheckpointPos = checkpointTransform.position;
@@ -41,7 +51,7 @@ public class CheckpointManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Mueve al jugador al último checkpoint registrado.
+    /// Teletransporta al jugador al último checkpoint registrado.
     /// </summary>
     public void RespawnPlayer()
     {
@@ -60,6 +70,3 @@ public class CheckpointManager : MonoBehaviour
         Debug.Log("[CheckpointManager] Jugador reaparecido en último checkpoint");
     }
 }
-
-
-
