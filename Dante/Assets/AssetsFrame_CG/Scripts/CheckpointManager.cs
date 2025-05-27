@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class CheckpointManager : MonoBehaviour
 {
     public static CheckpointManager Instance { get; private set; }
@@ -59,3 +60,6 @@ public class CheckpointManager : MonoBehaviour
         Debug.Log("[CheckpointManager] Jugador reaparecido en último checkpoint");
     }
 }
+
+
+
