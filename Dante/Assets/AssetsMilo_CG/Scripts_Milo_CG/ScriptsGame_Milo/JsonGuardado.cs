@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public static class JsonGuardado
 {
+
+    
     /// <summary>
     /// Ruta completa del archivo donde se guarda el progreso.
     /// </summary>
@@ -38,7 +40,8 @@ public static class JsonGuardado
         else
         {
             Debug.LogWarning("No se encontró archivo de progreso, se crea nuevo.");
-            return new DatosGuardados();
+             // Asignar un nombre por defecto
+            return null;
         }
     }
 

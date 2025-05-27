@@ -79,22 +79,7 @@ public class GameController : MonoBehaviour
     public AudioClip sonidoCorazon;
 
     private AudioSource audioSource;
-
-    /// <summary>
-    /// Inicializa la instancia del GameController y asegura que sea única.
-    /// </summary>
-    //void Awake()
-    //{
-    //    if (Instance == null)
-    //    {
-    //        Instance = this;
-    //        DontDestroyOnLoad(gameObject);
-    //    }
-    //    else
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
+ 
 
     /// <summary>
     /// Inicializa referencias y el estado inicial del juego.

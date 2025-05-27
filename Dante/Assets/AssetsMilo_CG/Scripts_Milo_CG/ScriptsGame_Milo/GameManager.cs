@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     /// Evento disparado cada vez que se recolecta un objeto.
     /// </summary>
     public event Action OnObjetoRecolectado;
+    public string nombrePartida = "PartidaSinNombre";
+    MenuManager menuManager;
 
     /// <summary>
     /// Método Awake que asegura la instancia única y carga o inicializa el progreso.
@@ -41,15 +43,23 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            if (File.Exists(JsonGuardado.ObtenerRuta()))
+            DatosGuardados datos = JsonGuardado.CargarDatos();
+
+            if (datos != null)
             {
-                CargarProgresoDesdeJson();
+                CargarProgresoDesdeJson(datos);
                 Debug.Log("Progreso cargado desde JSON.");
             }
             else
             {
+                // Aquí pedimos nombre al jugador
+
+                menuManager = FindObjectOfType<MenuManager>();
+                menuManager.EncenderPanelNombre();
+
                 InicializarProgreso();
-                Debug.Log("Progreso inicializado.");
+                GuardarProgresoEnJson(); // Guardamos de una vez
+                Debug.Log("Progreso inicializado con nueva partida.");
             }
         }
         else
@@ -63,11 +73,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void InicializarProgreso()
     {
-        // Agrega aquí los nombres REALES de tus escenas
-        progresoPorNivel.Add(new ProgresoNivel("Waen_CG"));
-        progresoPorNivel.Add(new ProgresoNivel("Frame_CG"));
-        progresoPorNivel.Add(new ProgresoNivel("Milo_CG"));
-        progresoPorNivel.Add(new ProgresoNivel("Smol_CG"));
+        progresoPorNivel.Clear(); // importante
+        progresoPorNivel.Add(new ProgresoNivel("Waen_CG", nombrePartida));
+        progresoPorNivel.Add(new ProgresoNivel("Frame_CG", nombrePartida));
+        progresoPorNivel.Add(new ProgresoNivel("Milo_CG", nombrePartida));
+        progresoPorNivel.Add(new ProgresoNivel("Smol_CG", nombrePartida));
     }
 
     /// <summary>
@@ -122,6 +132,9 @@ public class GameManager : MonoBehaviour
             progreso.nivelCompletado = true;
             Debug.Log($"Nivel completado: {progreso.nombreNivel}");
             GuardarProgresoEnJson(); // Guardamos el progreso justo cuando se completa el nivel
+
+            // Llamar al reporte:
+            Debug.Log(GeneradorDeReporte.Generar());
         }
     }
 
@@ -180,7 +193,8 @@ public class GameManager : MonoBehaviour
             {
                 nombreNivel = prog.nombreNivel,
                 objetosRecolectados = prog.objetosRecolectados,
-                nivelCompletado = prog.nivelCompletado
+                nivelCompletado = prog.nivelCompletado,
+                nombrePartida = nombrePartida
             });
         }
 
@@ -190,19 +204,27 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Carga el progreso desde un archivo JSON y actualiza la lista interna.
     /// </summary>
-    public void CargarProgresoDesdeJson()
+    public void CargarProgresoDesdeJson(DatosGuardados datos)
     {
-        DatosGuardados datos = JsonGuardado.CargarDatos();
         progresoPorNivel.Clear();
+        nombrePartida = datos.nombrePartida; //IMPORTANTE para mantenerlo sincronizado
 
         foreach (ProgresoNivelGuardado prog in datos.progresoPorNivel)
         {
-            progresoPorNivel.Add(new ProgresoNivel(prog.nombreNivel)
+            progresoPorNivel.Add(new ProgresoNivel(prog.nombreNivel, prog.nombrePartida)
             {
                 objetosRecolectados = prog.objetosRecolectados,
                 nivelCompletado = prog.nivelCompletado
             });
         }
     }
+
+    //private string ObtenerNombreDesdeJugador()
+    //{
+    //    // Aquí deberías usar UI real (InputField). Por ahora hacemos algo automático
+    //    string nombre = "Partida_";
+    //    Debug.Log("Nombre de la nueva partida: " + nombre);
+    //    return nombre;
+    //}
 }
 

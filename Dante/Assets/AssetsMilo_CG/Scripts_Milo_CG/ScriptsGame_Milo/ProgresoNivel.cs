@@ -22,6 +22,7 @@ public class ProgresoNivel
     /// Indica si el nivel ha sido completado.
     /// </summary>
     public bool nivelCompletado;
+    public string nombrePartida;
 
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="ProgresoNivel"/> con el nombre del nivel.
@@ -29,6 +30,15 @@ public class ProgresoNivel
     /// <param name="nombre">El nombre identificador del nivel.</param>
     public ProgresoNivel(string nombre)
     {
+        nombreNivel = nombre;
+        nombrePartida = "PartidaSinNombre";
+        objetosRecolectados = 0;
+        nivelCompletado = false;
+    }
+
+    public ProgresoNivel(string nombre, string nombreP)
+    {
+        nombrePartida = nombreP;
         nombreNivel = nombre;
         objetosRecolectados = 0;
         nivelCompletado = false;
