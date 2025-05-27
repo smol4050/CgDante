@@ -3,106 +3,86 @@ using TMPro;
 
 public class Panel : MonoBehaviour
 {
-    [Header("Panel UI que se activa al entrar")]
     public GameObject codePanelUI;
-
-    [Header("InputField para ingresar el código")]
     public TMP_InputField inputField;
-
-    [Header("Código correcto")]
-    public string correctCode = "042";
-
-    [Header("Puertas que se abrirán al ingresar el código correcto")]
+    public string correctCode = "1307";
     public GameObject[] doorsToRotate;
 
-    [Header("Zona que activa este panel (opcional si se quiere desactivar después)")]
-    public GameObject zoneTrigger;
-
-    private bool hasEnteredCorrectCode = false;
+    private bool playerInside = false;
 
     void Start()
     {
-        if (codePanelUI != null)
-            codePanelUI.SetActive(false);
-
-        if (inputField != null)
-            inputField.characterLimit = correctCode.Length;
-
-        // Asegurarse de que el mouse esté bloqueado al iniciar
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !hasEnteredCorrectCode)
-        {
-            if (codePanelUI != null)
-                codePanelUI.SetActive(true);
-
-            if (inputField != null)
-            {
-                inputField.text = "";
-                inputField.ActivateInputField();
-            }
-
-            // Desbloquear mouse al abrir panel
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        codePanelUI.SetActive(false);
+        inputField.characterLimit = correctCode.Length;
     }
 
     void Update()
     {
-        if (codePanelUI != null && codePanelUI.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        if (playerInside && Input.GetKeyDown(KeyCode.E))
         {
-            CheckCode(inputField.text);
-        }
-
-        // Permitir cerrar el panel manualmente con Esc
-        if (codePanelUI != null && codePanelUI.activeSelf && Input.GetKeyDown(KeyCode.Escape))
-        {
-            ClosePanel();
-        }
-    }
-
-    void CheckCode(string entered)
-    {
-        if (entered == correctCode)
-        {
-            Debug.Log("Código correcto. Abriendo puertas...");
-            RotateDoors();
-            hasEnteredCorrectCode = true;
-
-            ClosePanel();
-
-            if (zoneTrigger != null)
-                zoneTrigger.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Código incorrecto.");
+            codePanelUI.SetActive(true);
+            SetCursorState(true); // Desbloquea mouse
             inputField.text = "";
+            inputField.ActivateInputField();
+        }
+
+        if (codePanelUI.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        {
+            if (inputField.text == correctCode)
+            {
+                OpenDoors();
+                codePanelUI.SetActive(false);
+                SetCursorState(false); // Bloquea mouse
+            }
+            else
+            {
+                inputField.text = "";
+                Debug.Log("Código incorrecto");
+            }
         }
     }
 
-    void ClosePanel()
+    void OnTriggerEnter(Collider other)
     {
-        if (codePanelUI != null)
-            codePanelUI.SetActive(false);
-
-        // Volver a bloquear el mouse
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (other.CompareTag("Player"))
+            playerInside = true;
     }
 
-    void RotateDoors()
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInside = false;
+            codePanelUI.SetActive(false);
+            SetCursorState(false); // Bloquea mouse si sale sin completar
+        }
+    }
+
+    public void ClosePanel()
+    {
+        codePanelUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    void OpenDoors()
     {
         foreach (GameObject door in doorsToRotate)
         {
-            Vector3 newRotation = door.transform.eulerAngles;
-            newRotation.y = -53.151f;
-            door.transform.eulerAngles = newRotation;
+            Vector3 rot = door.transform.eulerAngles;
+            rot.y = -53.151f;
+            door.transform.eulerAngles = rot;
         }
+
+        Debug.Log("Puertas abiertas");
+    }
+
+    /// <summary>
+    /// Cambia el estado del cursor.
+    /// </summary>
+    public void SetCursorState(bool unlocked)
+    {
+        Cursor.visible = unlocked;
+        Cursor.lockState = unlocked ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }

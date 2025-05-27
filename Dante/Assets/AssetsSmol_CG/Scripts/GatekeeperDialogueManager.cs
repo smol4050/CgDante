@@ -6,6 +6,7 @@ public class GatekeeperDialogueManager : MonoBehaviour
 {
     [Header("UI References")]
     public Canvas dialogueCanvas;
+    public GameObject dialoguePanel;
     public TMP_InputField questionInputField;
     public TextMeshProUGUI dialogueText;
     public float textSpeed = 0.05f;
@@ -20,6 +21,14 @@ public class GatekeeperDialogueManager : MonoBehaviour
 
     [Header("Player Trigger Settings")]
     public string playerTag = "Player";
+
+    [Header("Gatekeeper References")]
+    public GameObject leftGatekeeper;
+    public GameObject rightGatekeeper;
+
+    [Header("Door Colliders (Trigger Zones)")]
+    public Collider leftDoorTrigger;
+    public Collider rightDoorTrigger;
 
     private string[] playerQuestions = new string[10]
     {
@@ -99,7 +108,8 @@ public class GatekeeperDialogueManager : MonoBehaviour
 
     void Start()
     {
-        dialogueCanvas.enabled = false;
+        dialogueCanvas.enabled = true;
+        dialoguePanel.SetActive(false);
         questionInputField.onSubmit.AddListener(ProcessQuestion);
         AssignRandomRoles();
     }
@@ -112,14 +122,22 @@ public class GatekeeperDialogueManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (hasTriggered || !other.CompareTag(playerTag)) return;
+
+        // Solo reacciona si el jugador entra en una de las puertas asignadas
+        if (other == leftDoorTrigger || other == rightDoorTrigger)
+        {
+            StartDialogue();
+        }
+    }
+
+    public void StartDialogue()
+    {
         if (hasTriggered) return;
 
-        if (other.CompareTag(playerTag))
-        {
-            hasTriggered = true;
-            dialogueCanvas.enabled = true;
-            StartCoroutine(IntroDialogue());
-        }
+        hasTriggered = true;
+        dialoguePanel.SetActive(true);
+        StartCoroutine(IntroDialogue());
     }
 
     IEnumerator IntroDialogue()
@@ -166,6 +184,7 @@ public class GatekeeperDialogueManager : MonoBehaviour
         if (questionsAsked >= maxQuestions)
         {
             dialogueText.text = "That is all. Choose your path.";
+            dialoguePanel.SetActive(false);
         }
     }
 
