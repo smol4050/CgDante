@@ -8,6 +8,18 @@ public class DeathZone : MonoBehaviour
     [Header("Path Managers que deben resetearse al morir")]
     public PathManager[] pathManagers; // Asignar manualmente en el Inspector
 
+    PausarReanudar pausarReanudar;
+
+    public void Start()
+    {
+        
+        pausarReanudar = FindObjectOfType<PausarReanudar>();
+        if (pausarReanudar == null)
+        {
+            Debug.LogWarning("[DeathZone] No se encontró PausarReanudar en la escena.");
+        }
+    }
+
     private void Reset()
     {
         GetComponent<Collider>().isTrigger = true;
@@ -18,6 +30,8 @@ public class DeathZone : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         Debug.Log("[DeathZone] Jugador murió.");
+
+        pausarReanudar.MostrarGameOver();
 
         // 1. Llama OnPlayerDeath() en cada PathManager asignado
         foreach (var manager in pathManagers)
