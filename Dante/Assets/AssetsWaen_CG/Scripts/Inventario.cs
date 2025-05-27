@@ -58,19 +58,7 @@ public class Inventario : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag==("Item"))
-        {
-            GameObject itemPickedUp = other.gameObject;
-
-            Item item = itemPickedUp.GetComponent<Item>();
-
-            AddItem(itemPickedUp, item.ID, item.tipo, item.descripcion, item.icon);
-        }
-    }
-
-    void AddItem(GameObject itemObject, int itemID, string itemType, string itemDescription, Sprite itemIcon)
+    public void RecogerItem(GameObject itemObject, int itemID, string itemType, string itemDescription, Sprite itemIcon)
     {
         for (int i = 0; i < allSlots; i++)
         {
@@ -80,27 +68,18 @@ public class Inventario : MonoBehaviour
                 slot[i].GetComponent<Slot>().item = itemObject;
                 slot[i].GetComponent<Slot>().ID = itemID;
                 slot[i].GetComponent<Slot>().tipo = itemType;
-                slot[i].GetComponent<Slot>().descripcion= itemDescription;
+                slot[i].GetComponent<Slot>().descripcion = itemDescription;
                 slot[i].GetComponent<Slot>().icon = itemIcon;
-                
-                //itemObject.transform.parent = slot[i].transform;
-                itemObject.SetActive(false);
 
-
+                itemObject.SetActive(false); // Ocultamos el objeto del mundo
                 slot[i].GetComponent<Slot>().UpdateSlot();
-
                 slot[i].GetComponent<Slot>().empty = false;
 
-
+                return; // Salimos del bucle después de asignar
             }
-            return;
-
-
         }
 
+        Debug.Log("Inventario lleno. No se pudo recoger el objeto.");
     }
-
-
-
 }
 
