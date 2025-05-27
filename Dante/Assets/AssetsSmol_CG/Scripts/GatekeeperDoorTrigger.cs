@@ -62,6 +62,8 @@ public class GatekeeperDoorTrigger : MonoBehaviour
             if (finalPanel != null)
                 finalPanel.SetActive(true);
 
+
+            GameManager.Instance.CompletarNivel();
             Debug.Log("Final verdadero alcanzado.");
         }
         else
