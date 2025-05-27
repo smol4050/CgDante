@@ -11,6 +11,7 @@ TagManager:
   - Linterna
   - RechargeButton
   - ReturnTrigger
+  - DialogueZone
   layers:
   - Default
   - TransparentFX
