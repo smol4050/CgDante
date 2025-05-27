@@ -7,23 +7,19 @@ public class GatekeeperDialogueManager : MonoBehaviour
     [Header("UI References")]
     public Canvas dialogueCanvas;
     public TMP_InputField questionInputField;
-    public TMP_InputField codeInputField;
     public TextMeshProUGUI dialogueText;
     public float textSpeed = 0.05f;
 
     [Header("Dialogue Config")]
     public float alienSpeakDuration = 2f;
     public int maxQuestions = 3;
-    public string correctCode = "042";
 
-    [Header("Doors to Rotate")]
-    public GameObject[] doors;
+    [Header("Audio")]
+    public AudioSource voiceSource;
+    public AudioClip alienVoiceClip;
 
-    [Header("Raycast")]
-    public Transform rayOrigin;
-    public float rayDistance = 3f;
-    public LayerMask panelLayer;
-    public string panelObjectName = "PanelFBX";
+    [Header("Player Trigger Settings")]
+    public string playerTag = "Player";
 
     private string[] playerQuestions = new string[10]
     {
@@ -97,59 +93,42 @@ public class GatekeeperDialogueManager : MonoBehaviour
     };
 
     private bool truthTellerIsLeft;
-    private bool doorAIsCorrect;
     private int questionsAsked = 0;
-    private bool isFirstInteraction = true;
+    private bool leftStartsFirst;
+    private bool hasTriggered = false;
 
     void Start()
     {
         dialogueCanvas.enabled = false;
-        AssignRandomRoles();
         questionInputField.onSubmit.AddListener(ProcessQuestion);
-        codeInputField.onSubmit.AddListener(ProcessCode);
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Ray ray = new Ray(rayOrigin.position, rayOrigin.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, rayDistance, panelLayer))
-            {
-                if (hit.collider.gameObject.name == panelObjectName)
-                {
-                    ShowDialoguePanel();
-                }
-            }
-        }
-    }
-
-    void ShowDialoguePanel()
-    {
-        if (!dialogueCanvas.enabled)
-        {
-            dialogueCanvas.enabled = true;
-            StartCoroutine(IntroDialogue());
-        }
+        AssignRandomRoles();
     }
 
     void AssignRandomRoles()
     {
         truthTellerIsLeft = Random.value > 0.5f;
-        doorAIsCorrect = Random.value > 0.5f;
+        leftStartsFirst = Random.value > 0.5f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (hasTriggered) return;
+
+        if (other.CompareTag(playerTag))
+        {
+            hasTriggered = true;
+            dialogueCanvas.enabled = true;
+            StartCoroutine(IntroDialogue());
+        }
     }
 
     IEnumerator IntroDialogue()
     {
-        if (isFirstInteraction)
-        {
-            isFirstInteraction = false;
-            dialogueText.text = "ʘ¥ɸⱣɅ∇⌂ψ…";
-            yield return new WaitForSeconds(alienSpeakDuration);
-            dialogueText.text = "We shall now speak in your tongue.";
-            yield return new WaitForSeconds(2f);
-            dialogueText.text = "Ask wisely. You have 3 questions.\nUse ID 0-9.";
-        }
+        yield return StartCoroutine(TypeText("ʘ¥ɸⱣɅ∇⌂ψ…", alienSpeakDuration));
+        yield return new WaitForSeconds(0.5f);
+        yield return StartCoroutine(TypeText("We shall now speak in your tongue.", 2f));
+        yield return new WaitForSeconds(0.5f);
+        dialogueText.text = "Ask wisely. You have 3 questions.\nUse ID 0-9.";
     }
 
     void ProcessQuestion(string input)
@@ -174,21 +153,19 @@ public class GatekeeperDialogueManager : MonoBehaviour
     IEnumerator HandleDialogue(int questionID)
     {
         string question = playerQuestions[questionID];
-        dialogueText.text = $"Player: {question}";
-        yield return new WaitForSeconds(1.5f);
+        yield return StartCoroutine(TypeText($"Player: {question}", 1.5f));
 
         int styleIndex = Random.Range(0, 4);
-        string leftResponse = GetGatekeeperResponse(questionID, styleIndex, truthTellerIsLeft);
-        dialogueText.text = $"Left Gatekeeper: {leftResponse}";
-        yield return new WaitForSeconds(2f);
 
-        string rightResponse = GetGatekeeperResponse(questionID, styleIndex, !truthTellerIsLeft);
-        dialogueText.text = $"Right Gatekeeper: {rightResponse}";
-        yield return new WaitForSeconds(2f);
+        string firstResponse = GetGatekeeperResponse(questionID, styleIndex, leftStartsFirst ? truthTellerIsLeft : !truthTellerIsLeft);
+        yield return StartCoroutine(TypeText($"{(leftStartsFirst ? "Left" : "Right")} Gatekeeper: {firstResponse}", 2f));
+
+        string secondResponse = GetGatekeeperResponse(questionID, styleIndex, !leftStartsFirst ? truthTellerIsLeft : !truthTellerIsLeft);
+        yield return StartCoroutine(TypeText($"{(!leftStartsFirst ? "Left" : "Right")} Gatekeeper: {secondResponse}", 2f));
 
         if (questionsAsked >= maxQuestions)
         {
-            dialogueText.text = "Now, enter the code to proceed.";
+            dialogueText.text = "That is all. Choose your path.";
         }
     }
 
@@ -205,35 +182,27 @@ public class GatekeeperDialogueManager : MonoBehaviour
         return new string(chars);
     }
 
-    void ProcessCode(string input)
+    IEnumerator TypeText(string text, float duration)
     {
-        if (input == correctCode)
+        if (voiceSource != null && alienVoiceClip != null)
         {
-            dialogueText.text = "Code accepted. Opening doors...";
-            RotateDoors();
+            voiceSource.clip = alienVoiceClip;
+            voiceSource.loop = true;
+            voiceSource.Play();
         }
-        else
-        {
-            dialogueText.text = "Incorrect code. Try again.";
-        }
-        codeInputField.text = "";
-    }
 
-    void RotateDoors()
-    {
-        foreach (GameObject door in doors)
-        {
-            Vector3 newRotation = door.transform.eulerAngles;
-            newRotation.y = -53.151f;
-            door.transform.eulerAngles = newRotation;
-        }
-    }
+        dialogueText.text = "";
+        float delay = duration / Mathf.Max(1, text.Length);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !dialogueCanvas.enabled)
+        foreach (char c in text)
         {
-            ShowDialoguePanel();
+            dialogueText.text += c;
+            yield return new WaitForSeconds(delay);
+        }
+
+        if (voiceSource != null && voiceSource.isPlaying)
+        {
+            voiceSource.Stop();
         }
     }
 }

@@ -13,39 +13,27 @@ public class Panel : MonoBehaviour
     [Header("Puertas a abrir")]
     public GameObject[] doorsToRotate;
 
-    [Header("Interacción")]
-    public LayerMask panelLayer;
-
-    private Camera mainCamera;
     private bool isPanelActive = false;
+    private bool isPlayerInside = false;
+    private bool hasEnteredCorrectCode = false;
 
     void Start()
     {
-        mainCamera = Camera.main;
         codePanelUI.SetActive(false);
         inputField.characterLimit = correctCode.Length;
     }
 
     void Update()
     {
-        if (!isPanelActive && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerInside && !isPanelActive && !hasEnteredCorrectCode && Input.GetKeyDown(KeyCode.E))
         {
-            if (PlayerLookingAtPanel())
-            {
-                OpenCodePanel();
-            }
+            OpenCodePanel();
         }
 
         if (isPanelActive && Input.GetKeyDown(KeyCode.Return))
         {
             CheckCode(inputField.text);
         }
-    }
-
-    bool PlayerLookingAtPanel()
-    {
-        Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
-        return Physics.Raycast(ray, out RaycastHit hit, 4f, panelLayer) && hit.collider.gameObject == gameObject;
     }
 
     void OpenCodePanel()
@@ -68,7 +56,9 @@ public class Panel : MonoBehaviour
         {
             Debug.Log("Código correcto. Abriendo puertas...");
             RotateDoors();
+            hasEnteredCorrectCode = true;
             CloseCodePanel();
+            this.enabled = false;
         }
         else
         {
@@ -84,6 +74,23 @@ public class Panel : MonoBehaviour
             Vector3 newRotation = door.transform.eulerAngles;
             newRotation.y = -53.151f;
             door.transform.eulerAngles = newRotation;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !hasEnteredCorrectCode)
+        {
+            isPlayerInside = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            isPlayerInside = false;
+            CloseCodePanel();
         }
     }
 }
