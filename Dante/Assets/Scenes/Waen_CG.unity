@@ -264,7 +264,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!4 &20815921 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2669850653427849836, guid: 7f8fcc36882c17a43ba04450e67cc237,
@@ -10636,7 +10635,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!1 &569088845
 GameObject:
   m_ObjectHideFlags: 0
@@ -11869,7 +11867,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!1 &656828772
 GameObject:
   m_ObjectHideFlags: 0
@@ -13212,6 +13209,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1657117195}
+    - targetCorrespondingSourceObject: {fileID: 256298240069659442, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1657117196}
     - targetCorrespondingSourceObject: {fileID: 4192799352983001808, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
       insertIndex: -1
@@ -18702,7 +18703,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!1 &999781828
 GameObject:
   m_ObjectHideFlags: 0
@@ -26161,7 +26161,7 @@ PrefabInstance:
     - target: {fileID: 3605548321617963014, guid: ff6feb32659107b4384ca3a2562e05bd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4059067256946434174, guid: ff6feb32659107b4384ca3a2562e05bd,
         type: 3}
@@ -30336,6 +30336,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventario: {fileID: 341495392}
   slotHolder: {fileID: 215261188}
+--- !u!114 &1657117196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657117166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9203c0c326fd314d98195003e06fc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvas: {fileID: 1871448410}
+  fadeDuration: 1
 --- !u!1 &1657225992
 GameObject:
   m_ObjectHideFlags: 0
@@ -32465,7 +32479,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!1 &1774211870
 GameObject:
   m_ObjectHideFlags: 0
@@ -37048,7 +37061,6 @@ MonoBehaviour:
   descripcion: 
   empty: 0
   icon: {fileID: 0}
-  slotIconGameObject: {fileID: 0}
 --- !u!1 &2022402919
 GameObject:
   m_ObjectHideFlags: 0
@@ -37500,6 +37512,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3009609446063212523, guid: 80f04f51c25c06a4fa72c71e01f87028,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4293742713464638423, guid: 80f04f51c25c06a4fa72c71e01f87028,
         type: 3}
       propertyPath: m_Pivot.x
@@ -37608,7 +37625,7 @@ PrefabInstance:
     - target: {fileID: 7262547514006918275, guid: 80f04f51c25c06a4fa72c71e01f87028,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
