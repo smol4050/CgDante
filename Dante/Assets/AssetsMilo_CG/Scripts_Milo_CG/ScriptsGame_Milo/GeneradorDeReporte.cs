@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using UnityEngine.tvOS;
 
 /// <summary>
 /// Clase que genera un reporte del progreso de niveles.
