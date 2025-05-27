@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PathManager : MonoBehaviour
 {
+    [Header("Audio")]
+    public AudioClip highlightSound;
+    private AudioSource audioSource;
+
     [Header("Cámaras")]
     public Camera fpsCamera;
     public Camera sequenceCamera;
@@ -15,8 +19,19 @@ public class PathManager : MonoBehaviour
     public MonoBehaviour playerMovement; // tu script de movimiento
 
     private List<TileScript> currentPathTiles;
+
     private enum State { WaitingForButton, ShowingSequence, Playing }
     private State state = State.WaitingForButton;
+
+    private void Awake()
+    {
+        // Obtén la referencia al AudioSource en este mismo GameObject
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("PathManager requiere un AudioSource en el mismo GameObject.");
+        }
+    }
 
     public void StartMemorySequence()
     {
@@ -31,7 +46,7 @@ public class PathManager : MonoBehaviour
     {
         state = State.ShowingSequence;
 
-        // 1) Cambiar de cámara (GameObject)
+        // 1) Cambiar de cámara
         if (fpsCamera != null) fpsCamera.gameObject.SetActive(false);
         if (sequenceCamera != null) sequenceCamera.gameObject.SetActive(true);
 
@@ -39,30 +54,38 @@ public class PathManager : MonoBehaviour
         if (playerMovement != null)
             playerMovement.enabled = false;
 
-        // 3) Resetea todas las baldosas
+        // 3) Resetear todas las baldosas
         foreach (var path in caminos)
             foreach (var parent in path.tileParents)
                 if (TryGetTileScript(parent, out var t))
                     t.ResetTile();
         yield return null; // esperar un frame
 
-        // 4) Ilumina el camino
+        // 4) Iluminar el camino + sonido
         currentPathTiles = new List<TileScript>();
         if (caminos.Count > 0)
         {
             int idx = Random.Range(0, caminos.Count);
             foreach (var parent in caminos[idx].tileParents)
+            {
                 if (TryGetTileScript(parent, out var t))
                 {
                     t.Highlight();
                     currentPathTiles.Add(t);
+
+                    // Reproducir sonido de highlight
+                    if (audioSource != null && highlightSound != null)
+                    {
+                        audioSource.PlayOneShot(highlightSound);
+                    }
                 }
+            }
         }
 
-        // 5) Espera los segundos
+        // 5) Esperar los segundos indicados
         yield return new WaitForSeconds(seconds);
 
-        // 6) Apaga solo la parte visual (mantiene isTrigger = false)
+        // 6) Apagar solo la parte visual
         foreach (var t in currentPathTiles)
             t.HideHighlight();
 
@@ -77,7 +100,8 @@ public class PathManager : MonoBehaviour
     public void OnPlayerDeath()
     {
         state = State.WaitingForButton;
-        // Asegura que FPS esté activa y secuencia apagada
+
+        // Asegurar cámaras
         if (sequenceCamera != null) sequenceCamera.gameObject.SetActive(false);
         if (fpsCamera != null) fpsCamera.gameObject.SetActive(true);
 
