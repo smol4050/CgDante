@@ -53,12 +53,13 @@ public class TiempoZonaInversa : MonoBehaviour
     /// <summary>
     /// Referencia al controlador del juego.
     /// </summary>
-    private GameController gameController;
 
     /// <summary>
     /// Referencia al transform del jugador.
     /// </summary>
     private Transform jugador;
+    GameController gameController;
+    FadeController fadeController;
 
     /// <summary>
     /// Inicializa referencias y oculta el panel de tiempo al inicio.
@@ -66,7 +67,8 @@ public class TiempoZonaInversa : MonoBehaviour
     void Start()
     {
         panelTiempo.SetActive(false);
-        gameController = GameController.Instance;
+        gameController = FindObjectOfType<GameController>();
+        fadeController = FindObjectOfType<FadeController>();
         jugador = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
@@ -103,7 +105,7 @@ public class TiempoZonaInversa : MonoBehaviour
         contadorActivo = false;
         panelTiempo.SetActive(false);
 
-        yield return FadeController.Instance.FadeOut();
+        yield return fadeController.FadeOut();
 
         if (jugador != null && puntoZonaInvertida != null)
         {
@@ -112,7 +114,7 @@ public class TiempoZonaInversa : MonoBehaviour
 
         enZonaInvertida = true;
 
-        yield return FadeController.Instance.FadeIn();
+        yield return fadeController.FadeIn();
     }
 
     /// <summary>
@@ -140,7 +142,7 @@ public class TiempoZonaInversa : MonoBehaviour
     /// </summary>
     public IEnumerator VolverZonaOriginal()
     {
-        yield return FadeController.Instance.FadeOut();
+        yield return fadeController.FadeOut();
 
         if (jugador != null && puntoZonaOriginal != null)
         {
@@ -149,6 +151,6 @@ public class TiempoZonaInversa : MonoBehaviour
 
         enZonaInvertida = false;
 
-        yield return FadeController.Instance.FadeIn();
+        yield return fadeController.FadeIn();
     }
 }

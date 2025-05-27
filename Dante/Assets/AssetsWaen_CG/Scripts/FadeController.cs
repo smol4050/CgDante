@@ -12,7 +12,7 @@ public class FadeController : MonoBehaviour
     /// <summary>
     /// Instancia única del controlador de fundido.
     /// </summary>
-    public static FadeController Instance;
+    //public static FadeController Instance;
 
     /// <summary>
     /// Grupo de Canvas sobre el que se aplicará el efecto de fundido.
@@ -27,13 +27,13 @@ public class FadeController : MonoBehaviour
     /// <summary>
     /// Establece la instancia singleton o destruye el objeto si ya existe una instancia.
     /// </summary>
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
-    }
+    //private void Awake()
+    //{
+    //    if (Instance == null)
+    //        Instance = this;
+    //    else
+    //        Destroy(gameObject);
+    //}
 
     /// <summary>
     /// Ejecuta una transición de fundido hacia negro (opacidad completa).
