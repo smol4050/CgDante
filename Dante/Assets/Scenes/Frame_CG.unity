@@ -21426,6 +21426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightSound: {fileID: 8300000, guid: 187d348092fbf0b42a32f7560822619c, type: 3}
+  tickSound: {fileID: 8300000, guid: c97b5fdf40cc22b4a8c1a44be631524b, type: 3}
   fpsCamera: {fileID: 170300303}
   sequenceCamera: {fileID: 1748782747}
   caminos:
@@ -26261,6 +26262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightSound: {fileID: 8300000, guid: 187d348092fbf0b42a32f7560822619c, type: 3}
+  tickSound: {fileID: 8300000, guid: c97b5fdf40cc22b4a8c1a44be631524b, type: 3}
   fpsCamera: {fileID: 170300303}
   sequenceCamera: {fileID: 861283897}
   caminos:
@@ -29794,6 +29796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightSound: {fileID: 8300000, guid: 187d348092fbf0b42a32f7560822619c, type: 3}
+  tickSound: {fileID: 8300000, guid: c97b5fdf40cc22b4a8c1a44be631524b, type: 3}
   fpsCamera: {fileID: 170300303}
   sequenceCamera: {fileID: 60478430}
   caminos:
