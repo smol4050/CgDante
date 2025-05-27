@@ -545,12 +545,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &225575049 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d23ad7bafafba6444b6fd2f29a1d8948,
-    type: 3}
-  m_PrefabInstance: {fileID: 1482528054}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &227652749
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,12 +951,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258391686}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.3998172, y: -0.04885286, z: -0.00033631254}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 225575049}
+  m_Father: {fileID: 372268268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &258391688
 BoxCollider:
@@ -983,8 +977,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 0.12988074}
-  m_Center: {x: -8.4901794e-11, y: 0, z: 0.0036613294}
+  m_Size: {x: 0.8895257, y: 1, z: 0.12988074}
+  m_Center: {x: 0.45482334, y: 0, z: 0.0036610388}
 --- !u!1 &263365182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1614,6 +1608,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1388305054}
   m_SourcePrefab: {fileID: 100100000, guid: f31a746da8ab9b845ba39064e7007ac5, type: 3}
+--- !u!4 &372268268 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8251545220497995330, guid: d23ad7bafafba6444b6fd2f29a1d8948,
+    type: 3}
+  m_PrefabInstance: {fileID: 1482528054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &382683628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,35 +1962,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d89fe1bc6911e7418042fb73ff937b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questions:
-  - Which door leads to freedom?
-  - Is the other gatekeeper truthful?
-  - Would you lie if I asked about the correct door?
-  - If I follow your advice, will I regret it?
-  - Would the other gatekeeper say this door is correct?
-  - Are you trying to mislead me?
-  - Is the correct door to your left?
-  - Is your role to guide or deceive?
-  - Would the other one claim this door leads to truth?
-  - If I trust you, do I succeed?
-  - Am I supposed to doubt you?
-  - Is this a test of perception?
-  - Would the other gatekeeper agree with your answer?
-  - Do both doors lead somewhere?
-  - Is the right door the wrong one?
-  - Would you choose this door for yourself?
-  - Am I asking the wrong question?
-  - Is silence sometimes the right answer?
-  - Is the true path hidden in lies?
-  - Would the other gatekeeper tell me to go left?
+  inputField: {fileID: 0}
   dialogueText: {fileID: 0}
-  dialogueSpeed: 0.05
-  delayBetweenLines: 2
-  gatekeeperAudio: {fileID: 0}
-  incomprehensibleClip: {fileID: 0}
-  switchToEnglishClip: {fileID: 0}
-  gatekeeper1: {fileID: 154991099}
-  gatekeeper2: {fileID: 1667249991}
+  textSpeed: 0.05
+  alienSpeakDuration: 2
+  maxQuestions: 3
 --- !u!4 &514123190
 Transform:
   m_ObjectHideFlags: 0
@@ -2389,6 +2365,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: _PrincipalPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 848358854621602700, guid: f3057d4ca24352546912cf73897592d9,
+        type: 3}
+      propertyPath: _runSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8977297172576663587, guid: f3057d4ca24352546912cf73897592d9,
         type: 3}
@@ -3761,6 +3742,12 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3628990442929905983, guid: f31a746da8ab9b845ba39064e7007ac5, type: 3}
+--- !u!4 &1018259122 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1486610366685774416, guid: d23ad7bafafba6444b6fd2f29a1d8948,
+    type: 3}
+  m_PrefabInstance: {fileID: 1482528054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1038226426 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4451662282925607904, guid: f31a746da8ab9b845ba39064e7007ac5,
@@ -3817,55 +3804,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3628990442929905983, guid: f31a746da8ab9b845ba39064e7007ac5, type: 3}
---- !u!1 &1075578726
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1075578728}
-  - component: {fileID: 1075578727}
-  m_Layer: 0
-  m_Name: Sky and Fog Global Volume
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1075578727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075578726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 0aed3adca8984cb4e82d6474f4106050, type: 2}
---- !u!4 &1075578728
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1075578726}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 141.30367, y: 287.8592, z: 25.327452}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1098101170
 GameObject:
   m_ObjectHideFlags: 0
@@ -5003,6 +4941,59 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1379662676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379662677}
+  - component: {fileID: 1379662678}
+  m_Layer: 0
+  m_Name: Collider door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379662677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379662676}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.929, y: 0.35740653, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1018259122}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1379662678
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379662676}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8986987, y: 1, z: 0.12988074}
+  m_Center: {x: 0.47514853, y: 0, z: 0.0036610453}
 --- !u!1 &1388305050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8931964389117436169, guid: f31a746da8ab9b845ba39064e7007ac5,
@@ -5309,7 +5300,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: d23ad7bafafba6444b6fd2f29a1d8948,
+    - targetCorrespondingSourceObject: {fileID: 1486610366685774416, guid: d23ad7bafafba6444b6fd2f29a1d8948,
+        type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 1379662677}
+    - targetCorrespondingSourceObject: {fileID: 8251545220497995330, guid: d23ad7bafafba6444b6fd2f29a1d8948,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 258391687}
@@ -7745,7 +7740,6 @@ SceneRoots:
   - {fileID: 344292268}
   - {fileID: 687021356}
   - {fileID: 1748434438}
-  - {fileID: 1075578728}
   - {fileID: 1482528054}
   - {fileID: 1196917887}
   - {fileID: 154991098}
