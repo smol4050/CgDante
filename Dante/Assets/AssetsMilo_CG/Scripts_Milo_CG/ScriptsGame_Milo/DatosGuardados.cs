@@ -24,6 +24,8 @@ public class ProgresoNivelGuardado
     /// Indica si el nivel fue completado.
     /// </summary>
     public bool nivelCompletado;
+    public string nombrePartida;
+
 }
 
 /// <summary>
@@ -32,6 +34,11 @@ public class ProgresoNivelGuardado
 [System.Serializable]
 public class DatosGuardados
 {
+    /// <summary>
+    /// Nombre de la partida.
+    /// </summary>
+    public string nombrePartida;
+
     /// <summary>
     /// Lista del progreso registrado por cada nivel.
     /// </summary>

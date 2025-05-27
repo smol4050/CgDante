@@ -5,23 +5,28 @@ using UnityEngine;
 /// <summary>
 /// Script que permite al jugador recoger una linterna.
 /// Al interactuar, activa la linterna en la cámara y reproduce un sonido.
+/// Implementa la interfaz <see cref="IInteractuable"/> para permitir la interacción.
 /// </summary>
 public class LinternaPickup : MonoBehaviour, IInteractuable
 {
     /// <summary>
-    /// Referencia a la linterna que debe activarse en la cámara del jugador.
+    /// Referencia al controlador de la linterna que se activará al recogerla.
+    /// Debe asignarse desde el Inspector.
     /// </summary>
-    [SerializeField] private GameObject linternaEnCamara;
+    [SerializeField] private LinternaControlador controlador;
 
+    /// <summary>
+    /// Componente de audio que se usará para reproducir el sonido de recogida.
+    /// </summary>
     private AudioSource audioSource;
 
     /// <summary>
-    /// Indica si la linterna ya fue recogida.
+    /// Bandera para evitar que la linterna sea recogida múltiples veces.
     /// </summary>
     private bool recogida = false;
 
     /// <summary>
-    /// Inicializa el componente AudioSource al comenzar la escena.
+    /// Inicializa referencias necesarias.
     /// </summary>
     void Start()
     {
@@ -29,27 +34,24 @@ public class LinternaPickup : MonoBehaviour, IInteractuable
     }
 
     /// <summary>
-    /// Método que se llama al interactuar con el objeto.
-    /// Activa la linterna en la cámara y reproduce un sonido, si está disponible.
+    /// Método que se ejecuta cuando el jugador interactúa con el objeto.
+    /// Activa la linterna, reproduce un sonido y desactiva o destruye el objeto.
     /// </summary>
     public void ActivarObjeto()
     {
         if (recogida) return;
         recogida = true;
 
-        if (linternaEnCamara != null)
-            linternaEnCamara.SetActive(true);
+        controlador.ActivarLinterna(); // Notifica que la linterna fue recogida
 
         if (audioSource != null && audioSource.clip != null)
         {
             audioSource.Play();
-            // Destruye el objeto después de que el sonido termine
-            Destroy(gameObject, audioSource.clip.length);
+            Destroy(gameObject, audioSource.clip.length); // Espera a que termine el sonido antes de destruir
         }
         else
         {
-            // Si no hay sonido, desactiva el objeto inmediatamente
-            gameObject.SetActive(false);
+            gameObject.SetActive(false); // Si no hay sonido, simplemente desactiva el objeto
         }
     }
 }
